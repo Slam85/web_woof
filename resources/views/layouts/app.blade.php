@@ -12,34 +12,80 @@
     @vite('public/style.css')
 </head>
 
-<body class="bg-secondary text-black bg-opacity-10">
+<body class="bg-secondary text-black bg-opacity-10 h-100">
     <header>
+        @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            @yield('navbar')
-            <!-- Navbar content -->
             <span><img class="logonav" src="public/images/WEBWOOF.png" /></span>
-            <h3 class="d-flex justify-content-left">Woof, 'user'!</h3>
+            @if (Route::has('login'))
+            @auth
+            <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
                 <button type=" button" class="btn btn-outline-light">Profile</button>
                 <button type="button" class="btn btn-outline-light">Create Post</button>
-                <button type="button" class="btn btn-outline-light">Log In</button>
                 <button type="button" class="btn btn-outline-light">Log Out</button>
+                @else
+                <span>Welcome to WEBWOOF
+                    <button type="button" class="btn btn-outline-light">Log In</button>
+                    <button type="button" class="btn btn-outline-light">Register</button>
+                </span>
             </span>
-
+            @endauth
         </nav>
-        <nav>
-
-            {{-- sticky, logo “<span>woof,  {{$username}}
-            </span>”, profile, bouton vers /createpost login/logout--}}
-        </nav>
-        <h1>@yield('title', 'LATEST POSTS')</h1>
+        @endif
+        <div class="p-3">
+            <h1>@yield('title', 'LATEST POSTS')</h1>
+        </div>
     </header>
-
-    <main>
+    <main class="p-3">
         @yield('content')
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-m-0">
+                <div class="card h-40">
+                    <div class="card-body">
+                        <h5 class="card-title">POST TITLE</h5>
+                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-danger">Comment</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card h-40">
+                    <div class="card-body">
+                        <h5 class="card-title">POST TITLE</h5>
+                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-danger">Comment</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-m-0">
+                <div class="card h-40">
+                    <div class="card-body">
+                        <h5 class="card-title">POST TITLE</h5>
+                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-danger">Comment</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card h-40">
+                    <div class="card-body">
+                        <h5 class="card-title">POST TITLE</h5>
+                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-danger">Comment</a>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="navbar fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center">
+    <footer class="navbar sticky-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center mt-2">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
