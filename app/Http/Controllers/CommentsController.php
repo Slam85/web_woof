@@ -20,6 +20,10 @@ class CommentsController extends Controller
      */
     public function create()
     {
+
+        return view('posts.add')->with([
+            'command' => 'create',
+        ]);
         //
     }
 
