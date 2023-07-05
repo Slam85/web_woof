@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/login', [Usercontroller::class,'login'])->name('login');
+Route::post('/login', [Usercontroller::class,'authenticate'])->name('authenticate');
+Route::get('/register', [Usercontroller::class,'register'])->name('register');
+Route::post('/register', [Usercontroller::class,'create'])->name('create');
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,5 +45,5 @@ Route::delete('/delete/{id}', [PostsController::class, 'destroy'])
     ->middleware(['auth', 'verified'])
     ->name('destroy');
 
+    
 
-require __DIR__ . '/auth.php';
