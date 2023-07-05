@@ -23,7 +23,7 @@ class Usercontroller extends Controller
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('welcome');
+            return redirect('/');
         }
  
         return back()->withErrors([
@@ -60,6 +60,12 @@ class Usercontroller extends Controller
     public function edit(){
 
     }
+    public function deconnexion()
+{
+        auth()->logout();
+
+        return redirect('/');
+}
 
     public function destroy($id){
         $del = User::findOrFail($id);

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [Usercontroller::class,'login'])->name('login');
 Route::post('/login', [Usercontroller::class,'authenticate'])->name('authenticate');
+Route::get('/deconnexion',[Usercontroller::class,'deconnexion'])->name('deconnexion');
 Route::get('/register', [Usercontroller::class,'register'])->name('register');
 Route::post('/register', [Usercontroller::class,'create'])->name('create');
 
