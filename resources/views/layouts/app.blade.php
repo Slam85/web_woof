@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('WEBWOOF')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/style.css">
+    @vite('public/style.css')
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<body class="bg-secondary text-black bg-opacity-10">
+    <header>
+        <nav class="navbar text-white bg-danger sticky-top p-2">
+            @yield('navbar')
+            <!-- Navbar content -->
+            <span><img class="logonav" src="public/images/WEBWOOF.png" /></span>
+            <h3 class="d-flex justify-content-left">Woof, 'user'!</h3>
+            <span>
+                <button type=" button" class="btn btn-outline-light">Profile</button>
+                <button type="button" class="btn btn-outline-light">Create Post</button>
+                <button type="button" class="btn btn-outline-light">Log In</button>
+                <button type="button" class="btn btn-outline-light">Log Out</button>
+            </span>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        </nav>
+        <nav>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            {{-- sticky, logo “<span>woof,  {{$username}}
+            </span>”, profile, bouton vers /createpost login/logout--}}
+        </nav>
+        <h1>@yield('title', 'LATEST POSTS')</h1>
+    </header>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+    <main>
+        @yield('content')
+    </main>
+
+    <footer class="navbar fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center">
+        @yield('footer')
+        <p class="text-center">
+            WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
+        </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+</body>
+
 </html>

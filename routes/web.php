@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,29 +23,12 @@ Route::get('/edit', [Usercontroller::class,'edit'])->name('user.edit');
 Route::put('/edit/{id}', [Usercontroller::class,'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class,'create'])->name('create');
 
-Route::get('/', function () {
-    return view('welcome');
+
+// Routes pour les posts
+Route::middleware('auth')->group(function () {
+    Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
-
-Route::get('/createpost}', [PostsController::class, 'create'])
-    ->middleware(['auth', 'verified'])
-    ->name('create');
-
-Route::post('/createpost}', [PostsController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('store');
-
-Route::get('/editpost/{id}', [PostsController::class, 'edit'])
-    ->middleware(['auth', 'verified'])
-    ->name('edit');
-
-Route::put('/editpost/{id}', [PostsController::class, 'update'])
-    ->middleware(['auth', 'verified'])
-    ->name('update');
-
-Route::delete('/delete/{id}', [PostsController::class, 'destroy'])
-    ->middleware(['auth', 'verified'])
-    ->name('destroy');
-
-    
-
