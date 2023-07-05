@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
+
+Route::get('/login', [Usercontroller::class, 'login'])->name('login');
+Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
+Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
+Route::get('/register', [Usercontroller::class, 'register'])->name('register');
+Route::post('/register', [Usercontroller::class, 'create'])->name('create');
