@@ -17,10 +17,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->string('picture')->nullable();
-<<<<<<< HEAD
-=======
             $table->timestamps();
->>>>>>> Dev2
         });
     }
 

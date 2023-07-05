@@ -16,10 +16,6 @@ return new class extends Migration
             $table->string('content');
             $table->bigInteger('user_id');
             $table->bigInteger('post_id');
-<<<<<<< HEAD
-=======
-            $table->timestamps();
->>>>>>> Dev2
         });
     }
 

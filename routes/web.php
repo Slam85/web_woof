@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,23 @@ Route::delete('/delete/{id}', [PostsController::class, 'destroy'])
 
 
 require __DIR__ . '/auth.php';
+
+Route::get('/welcome}', [CommentsController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('create');
+
+Route::post('/welcome}', [CommentsController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('store');
+
+Route::get('/welcome', [CommentsController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('edit');
+
+Route::put('/welcome', [CommentsController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('update');
+
+Route::delete('/welcome', [CommentsController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('destroy');
