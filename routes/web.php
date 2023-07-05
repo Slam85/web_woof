@@ -20,6 +20,8 @@ Route::get('/login', [Usercontroller::class,'login'])->name('login');
 Route::post('/login', [Usercontroller::class,'authenticate'])->name('authenticate');
 Route::get('/deconnexion',[Usercontroller::class,'deconnexion'])->name('deconnexion');
 Route::get('/register', [Usercontroller::class,'register'])->name('register');
+Route::get('/edit', [Usercontroller::class,'edit'])->name('user.edit');
+Route::put('/edit/{id}', [Usercontroller::class,'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class,'create'])->name('create');
 
 Route::get('/', function () {

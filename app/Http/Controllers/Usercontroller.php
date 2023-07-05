@@ -53,12 +53,27 @@ class Usercontroller extends Controller
         return redirect(route('login'));
     }
 
-    public function update(){ 
+    public function update(Request $request, string $id){ 
+        $validate = $request->validate([
+            'username' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => 'min:4|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:4'
 
+        ]);
+       
+        $update = User::find($id);
+        $update->username=request('username');
+        $update->email=request('email');
+        $update->password=request('password');
+        $update->save();
+        return redirect('/');
+
+        
     }
 
     public function edit(){
-
+        return view ('user.edit');
     }
     public function deconnexion()
 {
