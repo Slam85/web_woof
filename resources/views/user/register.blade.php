@@ -1,4 +1,10 @@
 <div>
+@if ($errors->any())
+
+    @foreach ($errors->all() as $error)
+        <div style="color:red">{{$error}}</div>
+    @endforeach
+@endif
     <form action="{{route('create')}}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
         <input type="text" name="username" placeholder="Pseudo" required/>
