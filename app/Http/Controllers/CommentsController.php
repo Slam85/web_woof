@@ -22,7 +22,7 @@ class CommentsController extends Controller
     {
 
         return view('posts.add')->with([
-            'command' => 'create',
+            'comment' => 'create',
         ]);
         //
     }
