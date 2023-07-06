@@ -16,18 +16,22 @@
     <header>
         @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            <span><img class="logonav" src="public/images/WEBWOOF.png" /></span>
+            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
-                <button type=" button" class="btn btn-outline-light">Profile</button>
-                <button type="button" class="btn btn-outline-light">Create Post</button>
-                <button type="button" class="btn btn-outline-light">Log Out</button>
+                <a href="{{route ('user.edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
+                <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
+                        Post</button></a>
+                <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
+                        Out</button></a>
                 @else
                 <span>Welcome to WEBWOOF
-                    <button type="button" class="btn btn-outline-light">Log In</button>
-                    <button type="button" class="btn btn-outline-light">Register</button>
+                    <a href="{{route ('login')}}"><button type="button" class="btn btn-outline-light">Log
+                            In</button></a>
+                    <a href="{{route ('register')}}"><button type="button"
+                            class="btn btn-outline-light">Register</button></a>
                 </span>
             </span>
             @endauth
@@ -39,53 +43,10 @@
     </header>
     <main class="p-3">
         @yield('content')
-        <div class="row">
-            <div class="col-sm-6 mb-3 mb-m-0">
-                <div class="card h-40">
-                    <div class="card-body">
-                        <h5 class="card-title">POST TITLE</h5>
-                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
-                        </p>
-                    </div>
-                    <a href="#" class="btn btn-danger">Comment</a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card h-40">
-                    <div class="card-body">
-                        <h5 class="card-title">POST TITLE</h5>
-                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
-                        </p>
-                    </div>
-                    <a href="#" class="btn btn-danger">Comment</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 mb-3 mb-m-0">
-                <div class="card h-40">
-                    <div class="card-body">
-                        <h5 class="card-title">POST TITLE</h5>
-                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
-                        </p>
-                    </div>
-                    <a href="#" class="btn btn-danger">Comment</a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card h-40">
-                    <div class="card-body">
-                        <h5 class="card-title">POST TITLE</h5>
-                        <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
-                        </p>
-                    </div>
-                    <a href="#" class="btn btn-danger">Comment</a>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <footer class="navbar sticky-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center mt-2">
+    <footer
+        class="footer sticky-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
