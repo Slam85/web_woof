@@ -23,7 +23,7 @@
             <label for="content">Content</label>
             <textarea name="content" class="form-control">{{ old('content') }}</textarea>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-outline-danger mt-2">Create</button>
     </form>
 </section>
 @endsection
