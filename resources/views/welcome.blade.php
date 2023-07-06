@@ -8,9 +8,8 @@
         <div class="col-sm-6 mb-3 mb-m-0">
             <div class="card h-40">
                 <div class="card-body">
-                    <h5 class="card-title">POST TITLE</h5>
-                    <p class="card-text">This is a post about how wonderful dogs are. Real content to come later...
-                    </p>
+                    <h5 class="card-title">{{$post->title}}</h5>
+                    <p class="card-text">{{$post->content}}</p>
                 </div>
                 @if (Route::has('login'))
                 @auth
