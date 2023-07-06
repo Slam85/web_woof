@@ -16,7 +16,7 @@
     <header>
         @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
+            <span><img class="logonav" src="images/WEBWOOF.jpg" /></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
@@ -47,7 +47,7 @@
     </main>
 
     <footer
-        class="footer bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
+        class="footer fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
