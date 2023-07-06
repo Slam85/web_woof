@@ -26,7 +26,7 @@ class Usercontroller extends Controller
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
 
-            return redirect('/index');
+            return redirect('/');
         }
 
         return back()->withErrors([
@@ -52,17 +52,17 @@ class Usercontroller extends Controller
         $email = request('email');
         $picture = $request->file('image');
         $password = request('password');
-        
+
         $uuid = Str::uuid()->toString();
 
-        User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid'=>$uuid]);
-        
-        
+        User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid' => $uuid]);
+
+
         Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
-        
+
         $request->session()->regenerate();
-        
-        
+
+
 
         return redirect(route('login'));
     }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostsController::class, 'welcome'])->name('posts.welcome');
+Route::get('/', [PostsController::class, 'welcome'])->name('welcome');
 
 Route::get('/index', [PostsController::class, 'index'])->name('index');
 Route::get('/login', [Usercontroller::class, 'login'])->name('login');
@@ -34,11 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
-
 });
 
 // Route Fallback pour la 404
 Route::fallback(function () {
     return view('404');
 });
-

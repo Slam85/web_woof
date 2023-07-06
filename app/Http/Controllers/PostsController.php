@@ -10,7 +10,9 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Posts::with('user')->latest()->get();
+        $user = auth()->user();
+        $posts = $user->posts;
+
         return view('posts.index', compact('posts'));
     }
 
@@ -38,7 +40,7 @@ class PostsController extends Controller
         $post->user_id = auth()->id();
         $post->save();
 
-        return redirect()->route('posts.welcome')->with('success', 'Post created successfully.');
+        return redirect()->route('welcome')->with('success', 'Post created successfully.');
     }
 
 
