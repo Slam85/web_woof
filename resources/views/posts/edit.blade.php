@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @section('content')
 <h1>Edit Post</h1>
 
@@ -11,7 +13,7 @@
 </div>
 @endif
 
-<form action="{{ route('posts.update', $post) }}" method="POST">
+<form action="{{ route('posts.update', $post->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="form-group">
