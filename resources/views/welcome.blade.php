@@ -3,8 +3,8 @@
 @section('content')
 <section>
 
-    @foreach ($posts as $post)
     <div class="row">
+        @foreach ($posts as $post)
         <div class="col-sm-6 mb-3 mb-m-0">
             <div class="card h-40">
                 <div class="card-body">
@@ -25,8 +25,9 @@
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
-    @endforeach
+
 </section>
 @endsection
 @section('footer')
