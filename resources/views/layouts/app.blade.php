@@ -16,12 +16,13 @@
     <header>
         @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
+            <span><img class="logonav" src="images/WEBWOOF.jpg" /></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
-                <a href="{{route ('user.edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
+                <a href="{{route ('user.edit')}}"><button type=" button"
+                        class="btn btn-outline-light">Profile</button></a>
                 <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
                         Post</button></a>
                 <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
