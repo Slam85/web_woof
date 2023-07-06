@@ -10,8 +10,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-
-        $posts = Posts::with(['user'])->latest()->get();
+        $posts = Posts::with('user')->latest()->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -22,8 +21,6 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-
-
         $request->validate([
             'title' => 'required',
             'content' => 'required',
@@ -38,10 +35,12 @@ class PostsController extends Controller
         return redirect()->route('index')->with('success', 'Post created successfully.');
     }
 
+
     public function edit(Posts $post)
     {
         return view('posts.edit', compact('post'));
     }
+
 
     public function update(Request $request, Posts $post)
     {
