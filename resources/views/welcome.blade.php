@@ -49,7 +49,7 @@
                         </p>
                     </div>
                     <div class="col-auto mb-3 ms-3">
-                        <a href="#" class="btn btn-danger">Comment</a>
+                        <a href="{{route ('welcome.create')}}" class="btn btn-danger">Comment</a>
                     </div>
                 </div>
             </div>
