@@ -12,6 +12,19 @@
     height: 40vh;
 }
 
+
+.likes {
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+
+.commentslikes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+=======
 .swing {
     -webkit-transform-origin: top center;
     -ms-transform-origin: top center;

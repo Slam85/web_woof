@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-secondary text-black bg-opacity-10 h-100 mb-3 pb-3">
+
     <header>
         @yield('navbar')
         <nav class="navbar fixed-top text-white bg-danger sticky-top p-2">
@@ -19,6 +20,7 @@
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
+            </span><img class="logonav" style="border-radius:10px;" src="{{ asset('storage/images/')}}/{{Auth::user()->uuid}}.jpg " /></span>
             <span>
                 <a href="{{route ('user.edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
                 <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
