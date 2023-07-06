@@ -15,11 +15,12 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        <form action="{{route ('welcome.create')}}" method="POST">
+                        <form action="{{route ('welcome.create'), $comments}}" method="POST">
+                            @csrf  
                         <input type="text"  placeholder="Ajouter un commentaire">
                         <button type="submit" class="btn btn-danger">Comment</button>    
                     </form>  
-                    @csrf                 
+                                
                         @foreach ($comments as $comment)
                         <p>{{$comment}}</p>  
                         @endforeach
