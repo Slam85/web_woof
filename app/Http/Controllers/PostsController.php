@@ -14,6 +14,12 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
+    public function welcome ()
+    {
+        $posts = Posts::latest()->get();
+        return view('welcome', compact('posts'));
+    }
+
     public function create()
     {
         return view('posts.create');
