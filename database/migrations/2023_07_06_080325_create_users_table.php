@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password', 100);
             $table->string('picture')->nullable();
             $table->string('uuid');
-            $table->timestamps();
         });
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create and publish Post')
+@section('title', 'New Post')
 @section('content')
 
 <section>
@@ -23,7 +23,7 @@
             <label for="content">Content</label>
             <textarea name="content" class="form-control">{{ old('content') }}</textarea>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-outline-danger mt-2">Create</button>
     </form>
 </section>
 @endsection

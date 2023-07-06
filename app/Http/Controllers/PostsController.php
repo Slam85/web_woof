@@ -14,7 +14,7 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function welcome ()
+    public function welcome()
     {
         $posts = Posts::latest()->get();
         return view('welcome', compact('posts'));
@@ -38,7 +38,7 @@ class PostsController extends Controller
         $post->user_id = auth()->id();
         $post->save();
 
-        return redirect()->route('index')->with('success', 'Post created successfully.');
+        return redirect()->route('posts.welcome')->with('success', 'Post created successfully.');
     }
 
 
@@ -68,6 +68,6 @@ class PostsController extends Controller
     public function destroy(Posts $post)
     {
         $post->delete();
-        return redirect()->route('index')->with('success', 'Post deleted successfully.');
+        return redirect()->route('posts/welcome')->with('success', 'Post deleted successfully.');
     }
 }
