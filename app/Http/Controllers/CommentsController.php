@@ -22,7 +22,7 @@ class CommentsController extends Controller
      */
     public function create(Request $request)
     {
-$comments = Request('comment')
+
         return view('welcome');
         //
     }
@@ -33,14 +33,18 @@ $comments = Request('comment')
     public function store(Request $request)
     {
         $request->validate([
-            // 'content' => 'required'
-
+            'content' => 'required,string',
         ]);
 
-        $comments = new Comments();
-        $comments->content = $request->content;
-        $comments->save();
-        return redirect()->route('store');
+        $comments = [
+            'content' => $request->content,
+        ];
+
+        Comments::create([
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('store')->with($comments);
     }
 
     /**
