@@ -11,12 +11,16 @@
     
 @endif
 <div class="row d-flex justify-content-center">
-    <div class="card" style="width: 20rem;">
+    <div class="card" style="width: 40rem;">
         <div class="card-body d-flex justify-content-center ">
-            <form class="row g-3 d-flex flex-column"  action="{{route('user.update', Auth::user()->id)}} " method="post">
+            <form class="row g-3 d-flex flex-column  "  action="{{route('user.update', Auth::user()->id)}} " method="post">
             @method('put')
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="email" value="{{Auth::user()->email}}" required />
+                <div class="col-auto">
+                    </span><p>ID n° {{Auth::user()->uuid}}</p>
+
+                </div>
                 <div class="col-auto">
                     <input type="text" name="username" value="{{Auth::user()->username}}"required/>
                 </div>
