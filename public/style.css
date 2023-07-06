@@ -1,7 +1,11 @@
 .logonav {
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background-image: url("/public/images/WEBWOOF.png");
+}
+
+.navbar {
+    height: 65px;
 }
 
 .h-40 {
