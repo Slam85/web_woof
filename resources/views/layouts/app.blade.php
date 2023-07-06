@@ -16,18 +16,22 @@
     <header>
         @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            <span><img class="logonav" src="public/images/WEBWOOF.png" /></span>
+            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
-                <button type=" button" class="btn btn-outline-light">Profile</button>
-                <button type="button" class="btn btn-outline-light">Create Post</button>
-                <button type="button" class="btn btn-outline-light">Log Out</button>
+                <a href="{{route ('edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
+                <a href="{{route ('createpost')}}"><button type="button" class="btn btn-outline-light">Create
+                        Post</button></a>
+                <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
+                        Out</button></a>
                 @else
                 <span>Welcome to WEBWOOF
-                    <button type="button" class="btn btn-outline-light">Log In</button>
-                    <button type="button" class="btn btn-outline-light">Register</button>
+                    <a href="{{route ('login')}}"><button type="button" class="btn btn-outline-light">Log
+                            In</button></a>
+                    <a href="{{route ('register')}}"><button type="button"
+                            class="btn btn-outline-light">Register</button></a>
                 </span>
             </span>
             @endauth
