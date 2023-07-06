@@ -31,7 +31,7 @@ Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
 
-
+// route pour les comments
 Route::get('/welcome}', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('create');
@@ -61,23 +61,3 @@ Route::middleware('auth')->group(function () {
     Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
-
-Route::get('/welcome}', [CommentsController::class, 'create'])
-    ->middleware(['auth', 'verified'])
-    ->name('create');
-
-Route::post('/welcome}', [CommentsController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('store');
-
-Route::get('/welcome', [CommentsController::class, 'edit'])
-    ->middleware(['auth', 'verified'])
-    ->name('edit');
-
-Route::put('/welcome', [CommentsController::class, 'update'])
-    ->middleware(['auth', 'verified'])
-    ->name('update');
-
-Route::delete('/welcome', [CommentsController::class, 'destroy'])
-    ->middleware(['auth', 'verified'])
-    ->name('destroy');
