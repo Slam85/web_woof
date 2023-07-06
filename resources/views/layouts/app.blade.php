@@ -12,34 +12,41 @@
     @vite('public/style.css')
 </head>
 
-<body class="bg-secondary text-black bg-opacity-10">
+<body class="bg-secondary text-black bg-opacity-10 h-100">
     <header>
+        @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
-            @yield('navbar')
-            <!-- Navbar content -->
-            <span><img class="logonav" src="public/images/WEBWOOF.png" /></span>
-            <h3 class="d-flex justify-content-left">Woof, 'user'!</h3>
+            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
+            @if (Route::has('login'))
+            @auth
+            <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
-                <button type=" button" class="btn btn-outline-light">Profile</button>
-                <button type="button" class="btn btn-outline-light">Create Post</button>
-                <button type="button" class="btn btn-outline-light">Log In</button>
-                <button type="button" class="btn btn-outline-light">Log Out</button>
+                <a href="{{route ('user.edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
+                <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
+                        Post</button></a>
+                <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
+                        Out</button></a>
+                @else
+                <span>Welcome to WEBWOOF
+                    <a href="{{route ('login')}}"><button type="button" class="btn btn-outline-light">Log
+                            In</button></a>
+                    <a href="{{route ('register')}}"><button type="button"
+                            class="btn btn-outline-light">Register</button></a>
+                </span>
             </span>
-
+            @endauth
         </nav>
-        <nav>
-
-            {{-- sticky, logo “<span>woof,  {{$username}}
-            </span>”, profile, bouton vers /createpost login/logout--}}
-        </nav>
-        <h1>@yield('title', 'LATEST POSTS')</h1>
+        @endif
+        <div class="p-3">
+            <h1>@yield('title', 'LATEST POSTS')</h1>
+        </div>
     </header>
-
-    <main>
+    <main class="p-3">
         @yield('content')
     </main>
 
-    <footer class="navbar fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center">
+    <footer
+        class="footer sticky-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse

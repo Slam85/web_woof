@@ -1,14 +1,26 @@
-<div>
+@extends('layouts.app')
+@section('title', 'Page de Connexion')
+@section('content')
 
-<form action"{{route('authenticate')}}" method="post" >
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <label for="email">E-mail</label>
-    <input type="email" name="email" id="email" required  />
-    <label for="password ">Mot De Passe</label>
-    <input  type="password" name="password"  required/>
-    <input type="submit" value="connexion" />
-    <input type="reset" value="Effacer" />
-</form
+<div class="row d-flex justify-content-center">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body ">
+            <form class="row g-3 d-flex flex-column"  action"{{route('authenticate')}}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="col-auto">
+                    <input type="email" name="email"  class="form-control" id="staticEmail2" placeholder="Login" required>
+                </div>
+                <div class="col-auto">
+                    <input type="password" name="password" class="form-control" id="inputPassword2" placeholder="Password" required>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-danger mb-3">Connexion</button>
+                </div>
+            </form>
 
-<p>Pas encore de Compte? <a href="{{route('register')}}">Cliquez ici!</a></p>
+            <p>Pas encore de Compte? <a href="{{route('register')}}">Cliquez ici!</a></p>
+        </div>
+    </div>
 </div>
+@endsection
+@section('footer')

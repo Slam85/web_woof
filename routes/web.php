@@ -20,6 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/index', [PostsController::class, 'index'])->name('index');
+Route::get('/login', [Usercontroller::class, 'login'])->name('login');
+Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
+Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
+Route::get('/register', [Usercontroller::class, 'register'])->name('register');
+Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
+Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
 // Routes pour les posts
@@ -30,10 +37,3 @@ Route::middleware('auth')->group(function () {
     Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
-
-// Routes login/register
-Route::get('/login', [Usercontroller::class, 'login'])->name('login');
-Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
-Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
-Route::get('/register', [Usercontroller::class, 'register'])->name('register');
-Route::post('/register', [Usercontroller::class, 'create'])->name('create');
