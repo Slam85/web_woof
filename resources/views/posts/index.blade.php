@@ -11,9 +11,9 @@
         <h5 class="card-title">{{ $post->title }}</h5>
         <p class="card-text">{{ $post->content }}</p>
         @isset($post->user)
-        <p class="card-text">Posted by: {{ $post->user->name }}</p>
+        <p class="card-text">Posted by: {{ $post->user->username }}</p>
         @endisset
-        <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit Post</a>
+        <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit</a>
 
         <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
             @csrf
