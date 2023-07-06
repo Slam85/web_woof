@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/login', [Usercontroller::class,'login'])->name('login');
 Route::post('/login', [Usercontroller::class,'authenticate'])->name('authenticate');
 Route::get('/deconnexion',[Usercontroller::class,'deconnexion'])->name('deconnexion');
