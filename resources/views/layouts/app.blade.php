@@ -12,7 +12,7 @@
     @vite('public/style.css')
 </head>
 
-<body class="bg-secondary text-black bg-opacity-10 h-100">
+<body class="bg-secondary text-black bg-opacity-10 h-100 pb-3 mb-3">
     <header>
         @yield('navbar')
         <nav class="navbar text-white bg-danger sticky-top p-2">
