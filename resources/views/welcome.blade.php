@@ -12,6 +12,7 @@
                 </div>
                 <div class="col-auto mb-3 ms-3">
                     <a href="#" class="btn btn-danger">Comment</a>
+                    <a href="#" class="btn likes"><img src="/images/images.png" /> </a>
                 </div>
             </div>
         </div>
