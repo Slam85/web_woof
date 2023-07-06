@@ -41,7 +41,7 @@ Route::post('/welcome', [CommentsController::class, 'create'])
 
 Route::post('/welcome', [CommentsController::class, 'store'])
     ->middleware(['auth', 'verified'])
-    ->name('store');
+    ->name('comments.store');
 
 Route::get('/welcome', [CommentsController::class, 'show'])
     ->middleware(['auth', 'verified'])

@@ -44,7 +44,7 @@ class CommentsController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->route('store')->with($comments);
+        return redirect()->route('comments.store')->with($comments);
     }
 
     /**
