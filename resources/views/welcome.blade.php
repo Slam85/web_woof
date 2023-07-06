@@ -15,7 +15,14 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        <a href="#" class="btn btn-danger">Comment</a>
+                        <form action="{{route ('welcome.create')}}" method="POST">
+                        <input type="text"  placeholder="Ajouter un commentaire">
+                        <button type="submit" class="btn btn-danger">Comment</button>    
+                    </form>                   
+                        @foreach ($comments as $comment)
+                        <p>{{$comment}}</p>  
+                        @endforeach
+                       
                     </div>
                     <div class="col-auto fakebtnlikes m-3">
                         <a href="#" class="likes"><img src="/images/images.png" /> </a>
