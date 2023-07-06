@@ -18,7 +18,8 @@
                         <form action="{{route ('welcome.create')}}" method="POST">
                         <input type="text"  placeholder="Ajouter un commentaire">
                         <button type="submit" class="btn btn-danger">Comment</button>    
-                    </form>                   
+                    </form>  
+                    @csrf                 
                         @foreach ($comments as $comment)
                         <p>{{$comment}}</p>  
                         @endforeach
