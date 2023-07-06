@@ -17,20 +17,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostsController::class, 'welcome'])->name('posts.welcome');
 
-Route::get('/login', [Usercontroller::class,'login'])->name('login');
-Route::post('/login', [Usercontroller::class,'authenticate'])->name('authenticate');
-Route::get('/deconnexion',[Usercontroller::class,'deconnexion'])->name('deconnexion');
-Route::get('/register', [Usercontroller::class,'register'])->name('register');
-Route::get('/edit', [Usercontroller::class,'edit'])->name('user.edit');
-Route::put('/edit/{id}', [Usercontroller::class,'update'])->name('user.update');
-Route::post('/register', [Usercontroller::class,'create'])->name('create');
+Route::get('/index', [PostsController::class, 'index'])->name('index');
+Route::get('/login', [Usercontroller::class, 'login'])->name('login');
+Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
+Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
+Route::get('/register', [Usercontroller::class, 'register'])->name('register');
+Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
+Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
 // Routes pour les posts
 Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
-    Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
-    Route::put('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
+    Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
+
 });
+
+// Route Fallback pour la 404
+Route::fallback(function () {
+    return view('404');
+});
+
