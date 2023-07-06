@@ -18,10 +18,10 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        <a href="#" class="btn btn-danger">Comment</a>
+                        <a href="#" class="btn btn-outline-danger mt-2"">Comment</a>
                     </div>
-                    <div class="col-auto fakebtnlikes m-3">
-                        <a href="#" class="likes"><img src="/images/images.png" /> </a>
+                    <div class=" col-auto fakebtnlikes m-3">
+                            <a href="#" class="likes"><img src="/images/images.png" /> </a>
                     </div>
                     @endauth
                     @endif
