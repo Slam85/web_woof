@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', [PostsController::class, 'index'])->name('home');
+Route::get('/index', [PostsController::class, 'index'])->name('index');
 
 
 // Routes pour les posts
@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
 
+// Routes login/register
 Route::get('/login', [Usercontroller::class, 'login'])->name('login');
 Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
 Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');

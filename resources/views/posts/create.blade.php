@@ -1,4 +1,3 @@
-@section('content')
 <h1>Create Post</h1>
 
 @if ($errors->any())
@@ -23,4 +22,3 @@
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-@endsection
