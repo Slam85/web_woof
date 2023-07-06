@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('WEBWOOF')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="public/style.css">
     @vite('public/style.css')
 </head>
@@ -16,13 +15,12 @@
     <header>
         @yield('navbar')
         <nav class="navbar fixed-top text-white bg-danger sticky-top p-2">
-            <span><a href="{{('/')}}"><img  class="logonav" src="images/WEBWOOF.jpg" /></a></span>
+            <span><a href="{{('/index')}}"><img class="logonav" src="images/WEBWOOF.jpg" /></a></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
             <span>
-                <a href="{{route ('user.edit')}}"><button type=" button"
-                        class="btn btn-outline-light">Profile</button></a>
+                <a href="{{route ('user.edit')}}"><button type=" button" class="btn btn-outline-light">Profile</button></a>
                 <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
                         Post</button></a>
                 <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
@@ -31,8 +29,7 @@
                 <span>Welcome to WEBWOOF
                     <a href="{{route ('login')}}"><button type="button" class="btn btn-outline-light">Log
                             In</button></a>
-                    <a href="{{route ('register')}}"><button type="button"
-                            class="btn btn-outline-light">Register</button></a>
+                    <a href="{{route ('register')}}"><button type="button" class="btn btn-outline-light">Register</button></a>
                 </span>
             </span>
             @endauth
@@ -46,15 +43,13 @@
         @yield('content')
     </main>
 
-    <footer
-        class="footer fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
+    <footer class="footer fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
         </p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
 </body>
 
