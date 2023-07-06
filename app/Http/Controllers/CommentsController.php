@@ -30,8 +30,19 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Comments $comments, string $user_id)
     {
+        Request::$request([
+            'comment_id' => 'required|string',
+
+        ]);
+
+        $comments = Comments::findOrFail($user_id);
+        $comments->content = $request->content;
+
+
+        $comments->save();
+        return redirect(route('posts.add'));
 
         //
     }
@@ -39,9 +50,9 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comments $comments, string $id)
+    public function show(Comments $comments, string $user_id)
     {
-        $comments = Comments::findOrFail($id);
+        $comments = Comments::findOrFail($user_id);
         return view('posts.add')->with([
             'see' => 'show',
             'comment_id' => $comments
@@ -52,9 +63,9 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Comments $comments, string $id)
+    public function edit(Comments $comments, string $user_id)
     {
-        $comments = Comments::findOrFail($id);
+        $comments = Comments::findOrFail($user_id);
         return view('posts.add')->with([
             'see' => 'show',
             'comment_id' => $comments
@@ -65,14 +76,14 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comments $comments, string $id)
+    public function update(Request $request, Comments $comments, string $user_id)
     {
         Request::$request([
             'comment_id' => 'required|string',
 
         ]);
 
-        $comments = Comments::findOrFail($id);
+        $comments = Comments::findOrFail($user_id);
         $comments->content = $request->content;
 
 
@@ -84,9 +95,9 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comments, string $id)
+    public function destroy(Comments $comments, string $user_id)
     {
-        $comments = Comments::findOrFail($id);
+        $comments = Comments::findOrFail($user_id);
         $comments->delete();
         return redirect(route('posts.add'));
         //
