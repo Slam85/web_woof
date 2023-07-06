@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->bigInteger('user_id');
             $table->integer('like')->nullable();
-            $table->timestamps();
         });
     }
 
