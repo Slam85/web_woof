@@ -21,8 +21,8 @@ class CommentsController extends Controller
     public function create()
     {
 
-        return view('posts.add')->with([
-            'comment_id' => 'create',
+        return view('welcome')->with([
+            'content' => 'create',
         ]);
         //
     }
@@ -33,7 +33,7 @@ class CommentsController extends Controller
     public function store(Request $request, Comments $comments, string $user_id)
     {
         Request::$request([
-            'comment_id' => 'required|string',
+            'content' => 'required|string',
 
         ]);
 
@@ -42,7 +42,7 @@ class CommentsController extends Controller
 
 
         $comments->save();
-        return redirect(route('posts.add'));
+        return redirect(route('welcome'));
 
         //
     }
@@ -50,12 +50,12 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Comments $comments, string $user_id)
+    public function show(Comments $comments, string $content)
     {
-        $comments = Comments::findOrFail($user_id);
-        return view('posts.add')->with([
+        $comments = Comments::findOrFail($content);
+        return view('welcome')->with([
             'see' => 'show',
-            'comment_id' => $comments
+            'content' => $comments
         ]);
         //
     }
@@ -68,7 +68,7 @@ class CommentsController extends Controller
         $comments = Comments::findOrFail($user_id);
         return view('posts.add')->with([
             'see' => 'show',
-            'comment_id' => $comments
+            'content' => $comments
         ]);
         //
     }
