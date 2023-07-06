@@ -22,7 +22,7 @@ class CommentsController extends Controller
     {
 
         return view('posts.add')->with([
-            'comment' => 'create',
+            'comment_id' => 'create',
         ]);
         //
     }
@@ -44,7 +44,7 @@ class CommentsController extends Controller
         $comments = Comments::findOrFail($id);
         return view('posts.add')->with([
             'see' => 'show',
-            'comment' => $comments
+            'comment_id' => $comments
         ]);
         //
     }

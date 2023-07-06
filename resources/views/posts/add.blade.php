@@ -3,16 +3,10 @@
     
 @section('content', 'Ajout Commentaire')
     <div>
+@foreach ($comments as $comments)
+    
+<input type="text" action="{{route ('welcome.create')}}" method="post">
+<button>Valider</button>
 
-        @if($comment 'create')
-       <input type="text" action="{{route ('welcome.create')}}" method="post">
-       <button>Valider</button>
-        @csrf
-        @endif
-        @if($comment =='show')
-        <input/>  
-        @csrf
-        @endif
-
-    </div>
-@endsection
+@endforeach
+       
