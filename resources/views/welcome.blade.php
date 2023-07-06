@@ -49,13 +49,8 @@
                         </p>
                     </div>
                     <div class="col-auto mb-3 ms-3">
-                        <a href="{{route ('welcome.create')}}" class="btn btn-danger">Comment</a>
-                        @foreach ($comments as $comments)
-    
                         <input type="text" action="{{route ('welcome.create')}}" method="post">
-                        <button type="submit" >Valider</button>
-                        
-                        @endforeach
+                        <a href="{{route ('welcome.create')}}" class="btn btn-danger">Comment</a>
                     </div>
                     
                 </div>

@@ -30,21 +30,17 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Comments $comments, string $user_id)
+    public function store(Request $request)
     {
-        Request::$request([
-            'content' => 'required|string',
+        $request->validate([
+            'content' => 'required'
 
         ]);
 
-        $comments = Comments::findOrFail($user_id);
+        $comments = new Comments();
         $comments->content = $request->content;
-
-
         $comments->save();
-        return redirect(route('welcome'));
-
-        //
+        return redirect()->route('welcome');
     }
 
     /**
@@ -54,7 +50,7 @@ class CommentsController extends Controller
     {
         $comments = Comments::findOrFail($content);
         return view('welcome')->with([
-            'see' => 'show',
+
             'content' => $comments
         ]);
         //
@@ -63,43 +59,37 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Comments $comments, string $user_id)
+    public function edit(Comments $comments)
     {
-        $comments = Comments::findOrFail($user_id);
-        return view('posts.add')->with([
-            'see' => 'show',
-            'content' => $comments
-        ]);
-        //
+        return view('welcome', compact('comments'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comments $comments, string $user_id)
+    public function update(Request $request, Comments $comments)
     {
-        Request::$request([
-            'comment_id' => 'required|string',
+        $request->validate([
+            'content' => 'required',
 
         ]);
 
-        $comments = Comments::findOrFail($user_id);
+
         $comments->content = $request->content;
-
-
         $comments->save();
-        return redirect(route('posts.add'));
+
+        return redirect(route('welcome'));
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comments, string $user_id)
+    public function destroy(Comments $comments)
     {
-        $comments = Comments::findOrFail($user_id);
+
         $comments->delete();
-        return redirect(route('posts.add'));
+        return redirect(route('welcome'));
         //
     }
 }
