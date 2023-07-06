@@ -32,25 +32,26 @@ Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
 // route pour les comments
-Route::get('/welcome}', [CommentsController::class, 'create'])
+
+// Route::get('/welcome', [CommentsController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('welcome.index');
+
+Route::get('/welcome', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('welcome.create');
 
-Route::post('/welcome}', [CommentsController::class, 'store'])
+Route::post('/welcome', [CommentsController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('store');
 
-Route::get('/welcome', [CommentsController::class, 'edit'])
+Route::get('/welcome', [CommentsController::class, 'show'])
     ->middleware(['auth', 'verified'])
-    ->name('edit');
+    ->name('show');
 
-Route::put('/welcome', [CommentsController::class, 'update'])
-    ->middleware(['auth', 'verified'])
-    ->name('update');
-
-Route::delete('/welcome', [CommentsController::class, 'destroy'])
-    ->middleware(['auth', 'verified'])
-    ->name('destroy');
+// Route::delete('/welcome', [CommentsController::class, 'destroy'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('destroy');
 
 
 // Routes pour les posts

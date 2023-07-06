@@ -10,10 +10,12 @@ class CommentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    // public function index()
+    // {
+    //     $comments = Comments::with('post')->get();
+    //     return view('welcome', compact('posts'));
+    //     //
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -21,9 +23,7 @@ class CommentsController extends Controller
     public function create()
     {
 
-        return view('welcome')->with([
-            'content' => 'create',
-        ]);
+        return view('welcome');
         //
     }
 
@@ -33,14 +33,14 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => 'required'
+            // 'content' => 'required'
 
         ]);
 
         $comments = new Comments();
         $comments->content = $request->content;
         $comments->save();
-        return redirect()->route('welcome');
+        return redirect()->route('store');
     }
 
     /**
