@@ -1,8 +1,8 @@
 @extends('layouts.app')
+@section('title', 'Create and publish Post')
 @section('content')
-<section>
-    <h1>Create Post</h1>
 
+<section>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -23,7 +23,7 @@
             <label for="content">Content</label>
             <textarea name="content" class="form-control">{{ old('content') }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-success">Create</button>
     </form>
 </section>
 @endsection

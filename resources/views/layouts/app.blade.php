@@ -13,14 +13,18 @@
 </head>
 
 <body class="bg-secondary text-black bg-opacity-10 h-100 mb-3 pb-3">
+
     <header>
         @yield('navbar')
         <nav class="navbar fixed-top text-white bg-danger sticky-top p-2">
-            <span><a href="{{('/')}}"><img  class="logonav" src="images/WEBWOOF.jpg" /></a></span>
+            <span><a href="{{('/index')}}"><img class="logonav" src="/images/WEBWOOF.jpg" /></a></span>
             @if (Route::has('login'))
             @auth
-            <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
-            </span><img class="logonav" style="border-radius:10px;" src="{{ asset('storage/images/')}}/{{Auth::user()->uuid}}.jpg " /></span>
+            <h3 class="d-flex justify-content-left align-items-center"><span><img class="logonav m-1"
+                        style="border-radius:10px;" src="{{ asset('storage/images/')}}/{{Auth::user()->uuid}}.jpg " />
+                </span> Woof,
+                {{Auth::user()->username}}!</h3>
+
             <span>
                 <a href="{{route ('user.edit')}}"><button type=" button"
                         class="btn btn-outline-light">Profile</button></a>
