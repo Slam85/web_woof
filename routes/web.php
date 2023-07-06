@@ -36,3 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
+
+// Route Fallback pour la 404
+Route::fallback(function() {
+    return view('404');
+ });

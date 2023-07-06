@@ -46,7 +46,7 @@
     </main>
 
     <footer
-        class="footer sticky-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
+        class="footer fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse
