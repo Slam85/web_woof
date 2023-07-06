@@ -15,7 +15,7 @@
     <header>
         @yield('navbar')
         <nav class="navbar fixed-top text-white bg-danger sticky-top p-2">
-            <span><a href="{{('/index')}}"><img class="logonav" src="images/WEBWOOF.jpg" /></a></span>
+            <span><a href="{{('/index')}}"><img class="logonav" src="/images/WEBWOOF.jpg" /></a></span>
             @if (Route::has('login'))
             @auth
             <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>

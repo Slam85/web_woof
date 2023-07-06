@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Post Edit')
 @section('content')
-<h1>Edit Post</h1>
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -18,12 +17,12 @@
     @method('PUT')
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" value="{{ $post->title }}">
+        <input type="text" name="title" class="form-control" value="{{ $post->title }}" disabled>
     </div>
     <div class="form-group">
         <label for="content">Content</label>
         <textarea name="content" class="form-control">{{ $post->content }}</textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-success">Update</button>
 </form>
 @endsection
