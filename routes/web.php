@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,28 +20,47 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/createpost}', [PostsController::class, 'create'])
+Route::get('/index', [PostsController::class, 'index'])->name('index');
+Route::get('/login', [Usercontroller::class, 'login'])->name('login');
+Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authenticate');
+Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
+Route::get('/register', [Usercontroller::class, 'register'])->name('register');
+Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
+Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::post('/register', [Usercontroller::class, 'create'])->name('create');
+
+
+
+
+Route::get('/welcome}', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('create');
 
-Route::post('/createpost}', [PostsController::class, 'store'])
+Route::post('/welcome}', [CommentsController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('store');
 
-Route::get('/editpost/{id}', [PostsController::class, 'edit'])
+Route::get('/welcome', [CommentsController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('edit');
 
-Route::put('/editpost/{id}', [PostsController::class, 'update'])
+Route::put('/welcome', [CommentsController::class, 'update'])
     ->middleware(['auth', 'verified'])
     ->name('update');
 
-Route::delete('/delete/{id}', [PostsController::class, 'destroy'])
+Route::delete('/welcome', [CommentsController::class, 'destroy'])
     ->middleware(['auth', 'verified'])
     ->name('destroy');
 
 
-require __DIR__ . '/auth.php';
+// Routes pour les posts
+Route::middleware('auth')->group(function () {
+    Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
+    Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
+});
 
 Route::get('/welcome}', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])

@@ -2,63 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
 use Illuminate\Http\Request;
+use App\Models\Posts;
+use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
+
+        $posts = Posts::with(['user'])->latest()->get();
+        return view('posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
+
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post = new Posts();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->user_id = auth()->id();
+        $post->save();
+
+        return redirect()->route('index')->with('success', 'Post created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Posts $posts)
+    public function edit(Posts $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Posts $posts)
+    public function update(Request $request, Posts $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect()->route('index')->with('success', 'Post updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Posts $posts)
+    public function destroy(Posts $post)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Posts $posts)
-    {
-        //
+        $post->delete();
+        return redirect()->route('index')->with('success', 'Post deleted successfully.');
     }
 }
