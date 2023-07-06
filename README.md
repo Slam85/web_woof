@@ -5,7 +5,7 @@
 
 Obligatoire:
 
-- Npm run Dev
+- npm run Dev
 - php artisan serve
 - php artisan migrate
 - php artisan storage:link
