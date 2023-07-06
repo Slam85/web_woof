@@ -35,9 +35,9 @@ Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 //     ->middleware(['auth', 'verified'])
 //     ->name('welcome.index');
 
-Route::get('/welcome', [CommentsController::class, 'create'])
+Route::post('/welcome', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])
-    ->name('welcome.create');
+    ->name('comments.create');
 
 Route::post('/welcome', [CommentsController::class, 'store'])
     ->middleware(['auth', 'verified'])
@@ -59,11 +59,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostsController::class, 'destroy'])->name('posts.destroy');
-
 });
 
 // Route Fallback pour la 404
 Route::fallback(function () {
     return view('404');
 });
-

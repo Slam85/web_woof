@@ -15,9 +15,9 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        <form action="{{route ('welcome.create'), $comments}}" method="POST">
+                        <form action="{{route ('comments.create'), $comments}}" method="POST">
                             @csrf  
-                        <input type="text"  placeholder="Ajouter un commentaire">
+                        <input type="text" name="comment" placeholder="Ajouter un commentaire">
                         <button type="submit" class="btn btn-danger">Comment</button>    
                     </form>  
                                 
