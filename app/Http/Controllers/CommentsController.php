@@ -32,38 +32,63 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+
         //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comments $comments)
+    public function show(Comments $comments, string $id)
     {
+        $comments = Comments::findOrFail($id);
+        return view('posts.add')->with([
+            'see' => 'show',
+            'comment' => $comments
+        ]);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Comments $comments)
+    public function edit(Comments $comments, string $id)
     {
+        $comments = Comments::findOrFail($id);
+        return view('posts.add')->with([
+            'see' => 'show',
+            'comment_id' => $comments
+        ]);
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comments $comments, string $id)
     {
+        Request::$request([
+            'comment_id' => 'required|string',
+
+        ]);
+
+        $comments = Comments::findOrFail($id);
+        $comments->content = $request->content;
+
+
+        $comments->save();
+        return redirect(route('posts.add'));
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comments $comments, string $id)
     {
+        $comments = Comments::findOrFail($id);
+        $comments->delete();
+        return redirect(route('posts.add'));
         //
     }
 }
