@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Usercontroller extends Controller
 {
@@ -48,10 +50,19 @@ class Usercontroller extends Controller
         ]);
         $username = request('username');
         $email = request('email');
-
+        $picture = $request->file('image');
         $password = request('password');
+        
+        $uuid = Str::uuid()->toString();
 
-        User::create(['username' => $username, 'email' => $email, 'password' => $password]);
+        User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid'=>$uuid]);
+        
+        
+        Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
+        
+        $request->session()->regenerate();
+        
+        
 
         return redirect(route('login'));
     }
