@@ -3,8 +3,6 @@
 
 @section('content')
 
-<a href="{{ route('posts.create') }}" class="btn btn-success mb-3">Create Post</a>
-
 @forelse ($posts as $post)
 <div class="card mb-3">
     <div class="card-body">
@@ -13,12 +11,12 @@
         @isset($post->user)
         <p class="card-text">Posted by: {{ $post->user->username }}</p>
         @endisset
-        <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Edit</a>
+        <a href="{{ route('posts.edit', $post) }}" class="btn btn-outline-warning">Edit</a>
 
         <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
         </form>
 
     </div>

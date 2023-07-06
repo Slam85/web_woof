@@ -17,10 +17,7 @@
             @method('put')
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="email" value="{{Auth::user()->email}}" required />
-                <div class="col-auto">
-                    </span><p>ID n° {{Auth::user()->uuid}}</p>
-
-                </div>
+                
                 <div class="col-auto">
                     <input type="text" name="username" value="{{Auth::user()->username}}"required/>
                 </div>
@@ -38,6 +35,9 @@
                 </div>
             </form>
 
+        </div>
+        <div>
+            <sub style="color:grey;"><em>ID n° {{Auth::user()->uuid}}</em></sub>
         </div>
     </div>
 </div>
