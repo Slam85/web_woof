@@ -42,20 +42,23 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, String $post_id)
     {
         $request->validate([
-            'content' => 'required,string',
+            'content' => 'required|string',
         ]);
         $user_id = Auth::user()->id;
         $comments = [
             'user_id' => $user_id,
-            'content' => $request->content
+            'content' => $request->content,
+            'post_id' => $post_id
+
         ];
 
         Comments::create([
             'user_id' => $user_id,
-            'content' => $request->content
+            'content' => $request->content,
+            'post_id' => $post_id
         ]);
 
         return redirect('/');

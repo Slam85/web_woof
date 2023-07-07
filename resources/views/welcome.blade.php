@@ -18,17 +18,13 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        @if (isset($command)&& $command =='create')
-                       
-                        <form action="{{route ('welcome', $post->id)}}" method="post" >
+                        <form action="{{route ('comments.store', $post->id)}}" method="post" >
                         @csrf
-                        <input type="text" name='comments' placeholder="Ajouter un commentaire"
+                        <input type="text" name='content' placeholder="Ajouter un commentaire"
                      value="{{ old ('content')}}">
                       <button type="submit" class="btn btn-danger">Comment</button> 
                         </form>
-                     
-                   
-                        @endif
+                       
                         @foreach ($comments as $comment)
                             <p>{{$comment->content}}</p>
                             @endforeach
