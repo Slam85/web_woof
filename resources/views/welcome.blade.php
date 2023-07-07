@@ -20,14 +20,16 @@
                     <div class="col-auto mb-3 ms-3">
                         <form action="{{route ('comments.store', $post->id)}}" method="post" >
                         @csrf
-                        <input type="text" name='content' placeholder="Ajouter un commentaire"
-                     value="{{ old ('content')}}">
+                        <input type="text" name='content' placeholder="Ajouter un commentaire" value="{{ old ('content')}}">
                       <button type="submit" class="btn btn-danger">Comment</button> 
                         </form>
                        
                         @foreach ($comments as $comment)
+                        @if ($comment->post_id == $post->id)
                             <p>{{$comment->content}}</p>
+                            @endif
                             @endforeach
+                       
                     </div>
                     <div class=" col-auto fakebtnlikes m-3">
                         <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
