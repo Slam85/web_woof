@@ -17,7 +17,7 @@
                 <label for="content">Content</label>
                 <textarea name="content" class="form-control">{{ $post->content }}</textarea>
             </div>
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-outline-success mt-2">Update</button>
         </form>
     </div>
 </div>

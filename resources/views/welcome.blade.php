@@ -11,6 +11,9 @@
                     <h5 class="card-title">{{$post->title}}</h5>
                     <p class="card-text">{{$post->content}}</p>
                 </div>
+                <div class="card-footer">
+                    <p class="card-text">Posted by: {{ $post->user->username }}</p>
+                </div>
                 @if (Route::has('login'))
                 @auth
                 <div class="row commentslikes">
@@ -30,8 +33,8 @@
                             <p>{{$comment->content}}</p>
                             @endforeach
                     </div>
-                    <div class="col-auto fakebtnlikes m-3">
-                        <a href="#" class="likes"><img src="/images/images.png" /> </a>
+                    <div class=" col-auto fakebtnlikes m-3">
+                        <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
                     </div>
                     @endauth
                     @endif
