@@ -1,14 +1,15 @@
 @extends('layouts.app')
 @section('title', 'Modification du profil')
 @section('content')
+
 @if ($errors->any())
 @foreach ($errors->all() as $error)
-    <div class="alert alert-danger" role="alert">
-        {{$error}}
-    </div>
-    @endforeach
+<div class="alert alert-danger" role="alert">
+    {{$error}}
 </div>
-    
+@endforeach
+</div>
+
 @endif
 <div class="row d-flex justify-content-center">
     <div class="card" style="width: 40rem;">
