@@ -27,7 +27,14 @@
                             </div>
                             <div class="col-auto">
                                 <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
+                                
                             </div>
+                            <div class="col-auto">
+                                    <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
+                                        <img src="/images/images.png" />
+                                        <p  class="m-2">{{$post->like}}</p>
+                                    </a>
+                                </div>
                         </div>
                     </form>
 
