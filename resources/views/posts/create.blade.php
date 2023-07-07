@@ -23,8 +23,7 @@
                     </div>
                     <div class="form-group ">
                         <label for="content">Content</label>
-                        <textarea style=" height: 10rem;" name="content"
-                            class="form-control">{{ old('content') }}</textarea>
+                        <textarea style=" height: 10rem;" name="content" class="form-control">{{ old('content') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-danger mt-2">Create</button>
                 </form>
