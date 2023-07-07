@@ -28,8 +28,11 @@
                         <li>{{$comment->content}}</li>
                         @endforeach
                     </div>
+
                     <div class=" col-auto fakebtnlikes m-3">
-                        <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
+                        <a href="{{route('likes.create', $post->id)}}" class="likes"><img src="/images/images.png" />
+                        </a>
+                        <p class="m-2">{{$post->like}}</p>
                     </div>
                     @endauth
                     @endif
