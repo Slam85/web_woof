@@ -18,15 +18,21 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
+
                         <form action="{{route ('comments.store', $post->id)}}" method="post">
                             @csrf
                             <input class="form-control" type="text" name='content' placeholder="Ajouter un commentaire" value="{{ old ('content')}}">
                             <button type="submit" class="btn btn-outline-danger mt-2">Comment</button>
+
                         </form>
 
                         @foreach ($comments as $comment)
-                        <li>{{$comment->content}}</li>
-                        @endforeach
+                        @if ($comment->post_id == $post->id)
+                            <p>{{$comment->content}}</p>
+                            @endif
+                            @endforeach
+                       
+
                     </div>
 
                     <div class=" col-auto fakebtnlikes m-3">
