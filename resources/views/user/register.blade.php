@@ -20,22 +20,22 @@
             <form class="row g-3 d-flex flex-column" action="{{route('create')}}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="col-auto">
-                    <input type="text" name="username" placeholder="Username" required />
+                    <input class="form-control" type="text" name="username" placeholder="Username" required />
                 </div>
                 <div class="col-auto">
-                    <input type="text" name="email" placeholder="E-mail" required />
+                    <input class="form-control" type="text" name="email" placeholder="E-mail" required />
                 </div>
                 <div class="col-auto">
-                    <input type="password" name="password" placeholder="Password" required />
+                    <input class="form-control" type="password" name="password" placeholder="Password" required />
                 </div>
                 <div class="col-auto">
-                    <input type="password" name="password_confirmation" placeholder="Confirm password" required />
+                    <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm password" required />
                 </div>
                 <div class="col-auto">
                     <label for="name">Profile photo: </label>
                 </div>
                 <div class="col-auto">
-                    <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" />
+                    <input class="form-control" type="file" name="image" accept="image/png, image/jpeg, image/jpg" />
                 </div>
                 <div class="col-auto d-flex justify-content-center">
                     <button type="submit" class="btn btn-outline-danger mt-2">Create account</button>
