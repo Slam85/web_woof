@@ -23,7 +23,7 @@ Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authentica
 Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
 Route::get('/register', [Usercontroller::class, 'register'])->name('register');
 Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
-Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::put('/edit', [Usercontroller::class, 'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
