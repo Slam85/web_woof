@@ -18,6 +18,9 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
+
+                        <button type="submit" method="POST" class="btn btn-outline-danger mt-2">Comment</button>
+
                         <form action="{{route ('comments.store', $post->id)}}" method="post" >
                         @csrf
                         <input type="text" name='content' placeholder="Ajouter un commentaire"
@@ -28,9 +31,13 @@
                         @foreach ($comments as $comment)
                             <p>{{$comment->content}}</p>
                             @endforeach
+
                     </div>
+
                     <div class=" col-auto fakebtnlikes m-3">
-                        <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
+                        <a href="{{route('likes.create', $post->id)}}" class="likes"><img src="/images/images.png" />
+                        </a>
+                        <p class="m-2">{{$post->like}}</p>
                     </div>
                     @endauth
                     @endif

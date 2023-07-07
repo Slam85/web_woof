@@ -2,45 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Like;
-use Illuminate\Http\Request;
+use App\Models\Posts;
 
 class LikeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(String $id)
     {
-        //
+        $post=Posts::findOrFail($id);
+        $post->setLike();
+        return redirect ('/');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function destroy(String $id)
     {
-        //
+        $post=Posts::findOrFail($id);
+        $post->unlike();
+        return redirect ('/');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Like $like)
-    {
-        //
-    }
-
-    // public function destroy(Like $like)
-    // {
-    //     //
-    // }
 }
