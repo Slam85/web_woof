@@ -21,9 +21,12 @@
                         <button type="submit" method="POST" class="btn btn-outline-danger mt-2">Comment</button>
                     </div>
 
-                    <div class=" col-auto fakebtnlikes m-3">
-                        <a href="{{route('likes.create', $post->id)}}" class="likes"><img src="/images/images.png" />
-                        </a>
+                    <div class="col-auto fakebtnlikes m-3 mask">
+                        <div class="patte">
+                            <a href="{{route('likes.create', $post->id)}}" class="likes"><img src="/images/images.png"
+                                    class="img-fluid" />
+                            </a>
+                        </div>
                         <p class="m-2">{{$post->like}}</p>
                     </div>
                     @endauth

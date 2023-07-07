@@ -12,6 +12,9 @@
     height: 40vh;
 }
 
+.likes:hover {
+    opacity: 0.2;
+}
 
 .likes {
     display: flex;
