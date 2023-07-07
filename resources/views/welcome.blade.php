@@ -18,7 +18,7 @@
                         <a href="#" class="btn btn-danger">Comment</a>
                     </div>
                     <div class="col-auto fakebtnlikes m-3">
-                        <a href="#" class="likes"><img src="/images/images.png" /> </a>
+                        <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
                     </div>
                     @endauth
                     @endif

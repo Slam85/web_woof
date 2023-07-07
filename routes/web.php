@@ -42,3 +42,11 @@ Route::fallback(function () {
     return view('404');
 });
 
+// Routes pour les likes 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/likes/create', [LikeController::class, 'create'])->name('likes.create');
+    Route::post('/likes', [LikeController::class, 'store'])->name('likes.store');
+    Route::delete('/likes/{like}', [LikeController::class, 'destroy'])->name('likes.destroy');
+
+});
