@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Usercontroller;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,32 @@ Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authentica
 Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
 Route::get('/register', [Usercontroller::class, 'register'])->name('register');
 Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
-Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::put('/edit', [Usercontroller::class, 'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class, 'create'])->name('create');
+
+
+
+// route pour les comments
+
+// Route::get('/welcome', [CommentsController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('welcome.index');
+
+Route::get('/welcome', [CommentsController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('comments.create');
+
+Route::post('/welcome/{post_id}', [CommentsController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('comments.store');
+
+Route::get('/welcome', [CommentsController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('show');
+
+// Route::delete('/welcome', [CommentsController::class, 'destroy'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('destroy');
 
 
 // Routes pour les posts
@@ -48,5 +73,4 @@ Route::fallback(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/likes/{id}', [LikeController::class, 'create'])->name('likes.create');
     Route::delete('/likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
-
 });
