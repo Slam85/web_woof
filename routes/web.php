@@ -48,9 +48,8 @@ Route::get('/welcome', [CommentsController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('show');
 
-// Route::delete('/welcome', [CommentsController::class, 'destroy'])
-//     ->middleware(['auth', 'verified'])
-//     ->name('destroy');
+Route::delete('/comments/{comment}', [CommentsController::class, 'destroy'])->name('comment.destroy');
+
 
 
 // Routes pour les posts
