@@ -23,7 +23,7 @@ Route::post('/login', [Usercontroller::class, 'authenticate'])->name('authentica
 Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconnexion');
 Route::get('/register', [Usercontroller::class, 'register'])->name('register');
 Route::get('/edit', [Usercontroller::class, 'edit'])->name('user.edit');
-Route::put('/edit/{id}', [Usercontroller::class, 'update'])->name('user.update');
+Route::put('/edit', [Usercontroller::class, 'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
@@ -39,4 +39,14 @@ Route::middleware('auth')->group(function () {
 // Route Fallback pour la 404
 Route::fallback(function () {
     return view('404');
+});
+
+
+// Routes pour les likes 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/likes/create', [LikeController::class, 'create'])->name('likes.create');
+    Route::post('/likes', [LikeController::class, 'store'])->name('likes.store');
+    Route::delete('/likes/{like}', [LikeController::class, 'destroy'])->name('likes.destroy');
+
 });

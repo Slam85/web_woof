@@ -57,9 +57,12 @@ class Usercontroller extends Controller
 
         User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid' => $uuid]);
 
-
-        Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
-
+        if($picture != ""){
+            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');}
+        else {
+            $picture = "images/picture.jpg";
+            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
+        }
         $request->session()->regenerate();
 
 
@@ -67,7 +70,7 @@ class Usercontroller extends Controller
         return redirect(route('login'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $validate = $request->validate([
             'username' => ['required'],
@@ -77,11 +80,17 @@ class Usercontroller extends Controller
 
         ]);
 
-        $update = User::find($id);
+        $update = User::find(Auth::user()->id);
         $update->username = request('username');
         $update->email = request('email');
         $update->password = request('password');
+        $uuid = request('uuid');
+        $picture = $request->file('image');
+        $directory='public/images/' . $uuid . '.jpg';
         $update->save();
+        if($picture != ""){
+            Storage::delete($directory);
+            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');}
         return redirect('/');
     }
 
