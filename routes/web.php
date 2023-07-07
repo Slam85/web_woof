@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 Route::fallback(function () {
     return view('404');
 });
-<<<<<<< HEAD
+
 
 // Routes pour les likes 
 
@@ -50,5 +50,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/likes/{like}', [LikeController::class, 'destroy'])->name('likes.destroy');
 
 });
-=======
->>>>>>> 76f356a0e15d62536ba80caba783e52a81212da3
