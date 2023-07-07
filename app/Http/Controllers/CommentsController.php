@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments;
+use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CommentsController extends Controller
 {
@@ -20,10 +23,19 @@ class CommentsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
+
     {
 
-        return view('welcome');
+        $user_id = Auth::user()->id;
+        $posts = Posts::where(['user_id', $user_id]);
+
+        foreach ($posts as $post) {
+            $list[] = $post->id;
+        }
+        $comments = Comments::whereIn('post_id', $list)->get();
+
+        return view('welcome', compact('posts', 'comments'));
         //
     }
 
@@ -35,28 +47,31 @@ class CommentsController extends Controller
         $request->validate([
             'content' => 'required,string',
         ]);
-
+        $user_id = Auth::user()->id;
         $comments = [
-            'content' => $request->content,
+            'user_id' => $user_id,
+            'content' => $request->content
         ];
 
         Comments::create([
-            'content' => $request->content,
+            'user_id' => $user_id,
+            'content' => $request->content
         ]);
 
-        return redirect()->route('comments.store')->with($comments);
+        return redirect('/');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comments $comments, string $content)
+    public function show(Comments $comments, string $id)
     {
-        $comments = Comments::findOrFail($content);
-        return view('welcome')->with([
+        $post = Posts::findOrFail($id);
+        $comments = $post->getComments();
 
-            'content' => $comments
-        ]);
+
+        return view('welcome', compact('posts', 'comments'));
+
         //
     }
 

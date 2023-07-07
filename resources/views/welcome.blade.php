@@ -15,24 +15,20 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        {{-- <form action="{{route ('comments.create'), $comments}}" method="POST">
-                            @csrf  
-                        <input type="text" name="comment" placeholder="Ajouter un commentaire">
-                        <button type="submit" class="btn btn-danger">Comment</button>    
-                    </form>  
-                                
-                        @foreach ($comments as $comment)
-                        <p>{{$comment}}</p>  
-                        @endforeach --}}
-                        @if($command =='create')
-                        <form action="{{route ('comments.store')}}" method="post" >
+                        @if (isset($command)&& $command =='create')
+                       
+                        <form action="{{route ('welcome', $post->id)}}" method="post" >
                         @csrf
-                        <input type="text" name='content' placeholder="Ajouter un commentaire"
-                        @if($command == 'create') 
-                        value="{{ old ('content')}}"
+                        <input type="text" name='comments' placeholder="Ajouter un commentaire"
+                     value="{{ old ('content')}}">
+                      <button type="submit" class="btn btn-danger">Comment</button> 
+                        </form>
+                     
+                   
                         @endif
-                      >
-                      <p> {{$content}} </p>
+                        @foreach ($comments as $comment)
+                            <p>{{$comment->content}}</p>
+                            @endforeach
                     </div>
                     <div class="col-auto fakebtnlikes m-3">
                         <a href="#" class="likes"><img src="/images/images.png" /> </a>

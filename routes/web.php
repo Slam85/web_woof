@@ -35,7 +35,7 @@ Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 //     ->middleware(['auth', 'verified'])
 //     ->name('welcome.index');
 
-Route::post('/welcome', [CommentsController::class, 'create'])
+Route::get('/welcome', [CommentsController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('comments.create');
 
