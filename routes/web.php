@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Usercontroller;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,30 @@ Route::put('/edit', [Usercontroller::class, 'update'])->name('user.update');
 Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
+
+// route pour les comments
+
+// Route::get('/welcome', [CommentsController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('welcome.index');
+
+Route::get('/welcome', [CommentsController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('comments.create');
+
+Route::post('/welcome/{post_id}', [CommentsController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('comments.store');
+
+Route::get('/welcome', [CommentsController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('show');
+
+// Route::delete('/welcome', [CommentsController::class, 'destroy'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('destroy');
+
+
 // Routes pour les posts
 Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
@@ -48,5 +73,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/likes/create', [LikeController::class, 'create'])->name('likes.create');
     Route::post('/likes', [LikeController::class, 'store'])->name('likes.store');
     Route::delete('/likes/{like}', [LikeController::class, 'destroy'])->name('likes.destroy');
-
 });

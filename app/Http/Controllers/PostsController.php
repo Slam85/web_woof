@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Http\Controllers\Controller;
+use App\Models\Comments;
 
 class PostsController extends Controller
 {
@@ -19,7 +20,12 @@ class PostsController extends Controller
     public function welcome()
     {
         $posts = Posts::latest()->get();
-        return view('welcome', compact('posts'));
+        foreach ($posts as $post) {
+            $list[] = $post->id;
+        }
+        $comments = Comments::whereIn('post_id', $list)->get();
+
+        return view('welcome', compact('posts', 'comments'));
     }
 
     public function create()
