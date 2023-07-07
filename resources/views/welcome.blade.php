@@ -18,10 +18,13 @@
                 @auth
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
-                        <a href="#" class="btn btn-outline-danger mt-2">Comment</a>
+                        <button type="submit" method="POST" class="btn btn-outline-danger mt-2">Comment</button>
                     </div>
+
                     <div class=" col-auto fakebtnlikes m-3">
-                        <a href="{{route('likes.create')}}" class="likes"><img src="/images/images.png" /> </a>
+                        <a href="{{route('likes.create', $post->id)}}" class="likes"><img src="/images/images.png" />
+                        </a>
+                        <p class="m-2">{{$post->like}}</p>
                     </div>
                     @endauth
                     @endif

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
@@ -45,8 +46,7 @@ Route::fallback(function () {
 // Routes pour les likes 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/likes/create', [LikeController::class, 'create'])->name('likes.create');
-    Route::post('/likes', [LikeController::class, 'store'])->name('likes.store');
-    Route::delete('/likes/{like}', [LikeController::class, 'destroy'])->name('likes.destroy');
+    Route::get('/likes/{id}', [LikeController::class, 'create'])->name('likes.create');
+    Route::delete('/likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
 
 });
