@@ -39,7 +39,13 @@
                     <button type="submit" class="btn btn-outline-warning mt-2">Update</button>
                 </div>
             </form>
-
+            <div class="card-body d-flex justify-content-center ">
+                <form class="row g-3 d-flex flex-column  " action="{{route('user.delete',Auth()->user()->id )}} " method="post" ">
+                @csrf
+                @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger mt-2">Delete</button>
+                </form>
+            </div>
         </div>
         <div>
             <sub style="color:grey;"><em>ID n° {{Auth::user()->uuid}}</em></sub>

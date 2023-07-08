@@ -33,10 +33,13 @@ class Posts extends Model
        return $this->like;
     }
 
+
     public function unlike(){
         $user_id =Auth::user()->id;
         $post_id = $this->id;
-        $like=Like::where('user_id', '=', $user_id, 'post_id', '=' , $post_id);
+        $like = Like::where('user_id', $user_id)
+            ->where('post_id', $post_id)
+            ->first();
         $like->delete();
         $this->like--;  
        $this->save();  
