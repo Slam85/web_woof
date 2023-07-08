@@ -26,6 +26,7 @@ Route::get('/deconnexion', [Usercontroller::class, 'deconnexion'])->name('deconn
 Route::get('/register', [Usercontroller::class, 'register'])->name('register');
 Route::get('/edit', [Usercontroller::class, 'edit']) ->middleware(['auth', 'verified'])->name('user.edit');
 Route::put('/edit', [Usercontroller::class, 'update']) ->middleware(['auth', 'verified'])->name('user.update');
+Route::delete('/edit/{edit}', [Usercontroller::class, 'destroy']) ->middleware(['auth', 'verified'])->name('user.delete');
 Route::post('/register', [Usercontroller::class, 'create'])->name('create');
 
 
@@ -70,6 +71,6 @@ Route::fallback(function () {
 // Routes pour les likes 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/likes/{id}', [LikeController::class, 'create'])->name('likes.create');
+    Route::get('/likes/{id}', [LikeController::class, 'toggle'])->name('likes.create');
     Route::delete('/likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
 });

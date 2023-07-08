@@ -52,7 +52,7 @@
                                 <div class="accordion-body">
                                 @foreach ($comments as $comment)
                                      @if ($comment->post_id == $post->id)
-                                        <span class="d-flex  m-1" style="height:25px;"> <p class="me-2">{{$comment->content}}</p>
+                                        <span class="me-2"  style="height:25px;">  {{$comment->content}}
                                             @if ($comment->user_id == Auth::id())
                                                
                                             <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
