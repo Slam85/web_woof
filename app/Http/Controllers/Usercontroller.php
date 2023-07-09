@@ -63,11 +63,12 @@ class Usercontroller extends Controller
             $picture = "images/picture.jpg";
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
-        $request->session()->regenerate();
 
+        if (Auth::attempt($validate)) {
+            $request->session()->regenerate();
 
-
-        return redirect(route('login'));
+            return redirect('/');
+        }
     }
 
     public function update(Request $request)
@@ -106,9 +107,11 @@ class Usercontroller extends Controller
     }
 
     public function destroy($id)
-    {
+    {   auth()->logout();
         $del = User::findOrFail($id);
+        $directory='public/images/' . $del->uuid . '.jpg';
+        Storage::delete($directory);
         $del->delete();
-        return redirect(route('welcome'));
+        return redirect('welcome');
     }
 }

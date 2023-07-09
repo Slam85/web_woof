@@ -12,10 +12,6 @@
     height: 40vh;
 }
 
-.likes:hover {
-    opacity: 0.2;
-}
-
 .likes {
     display: flex;
     height: 30px;
@@ -127,4 +123,18 @@
         -webkit-transform: translateX(0);
         transform: translateX(0);
     }
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0c63e4;
+    background-color: white;
+}
+
+.accordion-button {
+    color: #0c63e4;
+    background-color: white;
 }
