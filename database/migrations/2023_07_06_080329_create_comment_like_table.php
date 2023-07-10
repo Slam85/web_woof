@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Comments;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +20,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->boolean('liked')->default(false);
-            $table->foreignidFor(Comments::class)
+            $table->foreignidFor(Comment::class)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

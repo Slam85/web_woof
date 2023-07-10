@@ -87,15 +87,13 @@
                                     Comments
                                 </a>
                             </h2>
-                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
-
+                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse"
+                                data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
                                     @foreach ($comments as $comment)
                                     @if ($comment->post_id == $post->id)
                                     <span class="me-2" style="height:25px;"> {{$comment->content}}
                                         @if ($comment->user_id == Auth::id())
-
-
                                         <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
@@ -114,10 +112,15 @@
                                     @endif
                                     @endif
                                     @endforeach
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                     @endauth
                     @endif
                 </div>

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Comment;
+use App\Models\CommentLike;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,10 @@ class LikeController extends Controller
             return redirect('/')->with('success', '👎 You hate this.');
         }
     }
-
-
+  
+    return redirect('/');
+    }
+}
     public function toggleComments(String $id)
     {
         $comment = Comments::findOrFail($id);
@@ -46,3 +49,4 @@ class LikeController extends Controller
         }
     }
 }
+
