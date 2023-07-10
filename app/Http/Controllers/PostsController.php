@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Http\Controllers\Controller;
 use App\Models\Comments;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -24,9 +25,11 @@ class PostsController extends Controller
         foreach ($posts as $post) {
             $list[] = $post->id;
         }
+        $upid = $post->upid;
         $comments = Comments::whereIn('post_id', $list)->get();
+        $directory = 'public/images/' . $upid . '.jpg';
 
-        return view('welcome', compact('posts', 'comments'));
+        return view('welcome', compact('posts', 'comments', 'directory'));
     }
 
     public function create()
@@ -48,14 +51,14 @@ class PostsController extends Controller
         $post = new Posts();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->image = Str::upid()->toString();
+        $upid = $post->id;
         $post->user_id = auth()->id();
         $post->save();
 
         Posts::create(['title', 'content', 'upid']);
 
 
-        $picture = "images/picture.jpg";
+
         Storage::putFileAs('public/images', $picture, $upid . '.jpg');
 
         return redirect()->route('welcome')->with('success', 'Post created successfully.');

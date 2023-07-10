@@ -10,6 +10,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{$post->title}}</h5>
                     <p class="card-text">{{$post->content}}</p>
+                    @if ($post->upid!='')
+                    <img src="{{ asset('storage/images/')}}/{{$post->upid}}.jpg " />
+
+                    @endif
                 </div>
                 <div class="card-footer">
                     <p class="card-text">Posted by: {{ $post->user->username }}</p>
