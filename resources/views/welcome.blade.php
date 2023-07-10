@@ -52,7 +52,7 @@
                                     Comments
                                 </a>
                             </h2>
-                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse "
+                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse"
                                 data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
                                     @foreach ($comments as $comment)
@@ -60,16 +60,16 @@
                                     <span class="me-2" style="height:25px;"> {{$comment->content}}
                                         @if ($comment->user_id == Auth::id())
                                         <form action="{{ route('comment.destroy', $comment) }}" method="POST"
-                                            class="d-inline">
+                                            class="d-flex row justify-content:space-between">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" name="delete" class="btn btn-outline-danger"
+                                            <button type="submit" name="delete" class="btn btn-outline-danger col-2"
                                                 style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
-                                            <div class="col-2 likes d-flex">
+                                            <div class="col-2 likes d-flex" style="height:30px; width:30px">
                                                 <a style="text-decoration:none; color:black;"
-                                                    href="{{route('likesComment.create', $comment->id)}}">
+                                                    href="{{route('likesComment.create', $comment->id)}}" class="likes">
                                                     <img src="/images/images.png" style="height:30px; width:30px" />
-                                                    <p class="m-2">{{$comment->like}}</p>
+                                                    <span class="m-2">{{$comment->like}}</span>
                                                 </a>
                                             </div>
                                         </form>
@@ -77,10 +77,15 @@
                                     @endif
                                     @endif
                                     @endforeach
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                     @endauth
                     @endif
                 </div>
