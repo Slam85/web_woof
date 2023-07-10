@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\CommentLike;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,9 @@ class PostsController extends Controller
         $comments = Comment::latest()->get();
         $like = Like::where('user_id', Auth::id())
         ->first();
-        return view('welcome', compact('posts', 'comments','like'));
+        $commentLike = CommentLike::where('user_id', Auth::id())
+        ->first();
+        return view('welcome', compact('posts', 'comments','like','commentLike'));
     }
 
     public function create()
