@@ -10,7 +10,7 @@
 
 <script>
     setTimeout(function() {
-        document.getElementById('warning-message').style.display = 'none';
+        document.getElementById('danger-message').style.display = 'none';
     }, 2000); // Modifier le délai en millisecondes
 </script>
 
