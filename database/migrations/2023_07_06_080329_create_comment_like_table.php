@@ -14,6 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comment_like', function (Blueprint $table) {
+            $table->increments('id');
             $table->foreignidFor(User::class)
                 ->constrained()
                 ->onDelete('cascade')
@@ -23,7 +24,6 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->primary(['user_id', 'comments_id']);
         });
     }
 
