@@ -9,9 +9,9 @@
 @endif
 
 <script>
-setTimeout(function() {
-    document.getElementById('warning-message').style.display = 'none';
-}, 2000); // Modifier le délai en millisecondes
+    setTimeout(function() {
+        document.getElementById('danger-message').style.display = 'none';
+    }, 2000); // Modifier le délai en millisecondes
 </script>
 
 @if(session('success'))
@@ -21,9 +21,9 @@ setTimeout(function() {
 @endif
 
 <script>
-setTimeout(function() {
-    document.getElementById('success-message').style.display = 'none';
-}, 2000); // Modifier le délai en millisecondes
+    setTimeout(function() {
+        document.getElementById('success-message').style.display = 'none';
+    }, 2000); // Modifier le délai en millisecondes
 </script>
 
 
@@ -60,16 +60,16 @@ setTimeout(function() {
                                     <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
 
 
-                                    @if($post->like != null && $like != null && $like['user_id'] != null)
-                                    @if ($like['user_id'] == Auth::id())
+                                        @if($post->like != null && $like != null && $like['user_id'] != null)
+                                        @if ($like['user_id'] == Auth::id())
                                         <img src="/images/liked.jpg" />
-                                    @elseif($like != 0)
+                                        @elseif($like != 0)
                                         <img src="/images/images.png" />
-                                    @endif
-                                     @else
+                                        @endif
+                                        @else
                                         <img src="/images/images.png" />
-                                    @endif
-                                            <p class="m-2">{{$post->like}}</p>
+                                        @endif
+                                        <p class="m-2">{{$post->like}}</p>
                                     </a>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ setTimeout(function() {
                             </h2>
                             <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
 
-                              
+
 
                                 <div class="accordion-body">
                                     @foreach ($comments as $comment)
@@ -97,13 +97,11 @@ setTimeout(function() {
 
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" name="delete" class="btn btn-outline-danger"
-                                                style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
+                                            <button type="submit" name="delete" class="btn btn-outline-danger" style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
                                         </form>
                                         <div class="col-auto">
 
-                                            <a style="text-decoration:none; color:black;"
-                                                href="{{route('likes.create', $post->id)}}" class="likes">
+                                            <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
                                                 @if($post->like != null)
                                                 @if ($like['user_id'] == Auth::id() )
                                                 <img src="/images/liked.jpg" />
