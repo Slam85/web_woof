@@ -61,7 +61,7 @@ class CommentsController extends Controller
             'post_id' => $post_id
         ]);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Comment successfully created.');
     }
 
     /**
@@ -108,9 +108,8 @@ class CommentsController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Comments $comment)
-    { 
+    {
         $comment->delete();
         return redirect()->route('welcome');
-
     }
 }

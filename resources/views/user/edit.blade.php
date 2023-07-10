@@ -13,8 +13,8 @@
 @endif
 <div class="row d-flex justify-content-center">
     <div class="card" style="width: 40rem;">
-        <div class="card-body d-flex justify-content-center ">
-            <form class="row g-3 d-flex flex-column  " action="{{route('user.update')}} " method="post" enctype="multipart/form-data">
+        <div class="form-group d-flex flex-column mt-5">
+            <form class="row g-3 d-flex flex-column" action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
                 @method('put')
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="email" value="{{Auth::user()->email}}" required />
@@ -39,11 +39,11 @@
                     <button type="submit" class="btn btn-outline-warning mt-2">Update</button>
                 </div>
             </form>
-            <div class="card-body d-flex justify-content-center ">
-                <form class="row g-3 d-flex flex-column  " action="{{route('user.delete',Auth()->user()->id )}} " method="post" ">
-                @csrf
-                @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger mt-2">Delete</button>
+            <div class="col-auto mt-5">
+                <form class="row g-3 d-flex flex-column" action="{{route('user.delete',Auth()->user()->id )}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger mt-2">Delete</button>
                 </form>
             </div>
         </div>
