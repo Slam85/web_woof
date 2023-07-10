@@ -32,9 +32,6 @@ class PostsController extends Controller
     public function create()
     {
 
-        $upid = Str::upid()->toString();
-        Posts::create(['upid' => $upid]);
-
 
         return view('posts.create');
     }
@@ -44,15 +41,22 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'upid' => 'nullable'
+            'upid' => 'mimes:jpg,png,gif|max8192'
         ]);
+        $picture = $request->file('image');
 
         $post = new Posts();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->upid = $request->upid;
+        $post->image = Str::upid()->toString();
         $post->user_id = auth()->id();
         $post->save();
+
+        Posts::create(['title', 'content', 'upid']);
+
+
+        $picture = "images/picture.jpg";
+        Storage::putFileAs('public/images', $picture, $upid . '.jpg');
 
         return redirect()->route('welcome')->with('success', 'Post created successfully.');
     }
