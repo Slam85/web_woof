@@ -18,6 +18,10 @@
     width: 30px;
 }
 
+.likes:hover {
+    opacity: 0.2;
+}
+
 .commentslikes {
     display: flex;
     flex-direction: row;

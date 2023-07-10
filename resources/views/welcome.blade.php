@@ -67,15 +67,13 @@
                                             <button type="submit" name="delete" class="btn btn-outline-danger"
                                                 style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
                                         </form>
-
-                                        <form action="{{ route('comment.destroy', $comment) }}" method="POST"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" name="delete" class="btn btn-outline-danger"
-                                                style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
-                                        </form>
-
+                                        <div class="col-auto">
+                                            <a style="text-decoration:none; color:black;"
+                                                href="{{route('likesComment.create', $comment->id)}}" class="likes">
+                                                <img src="/images/images.png" />
+                                                <p class="m-2">{{$comment->likes}}</p>
+                                            </a>
+                                        </div>
                                     </span>
                                     @endif
                                     @endif

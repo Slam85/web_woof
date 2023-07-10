@@ -16,4 +16,11 @@ class Like extends Model
     public function like(): BelongsTo {
         return $this ->belongsTo(Posts::class);
     }
+
+    protected $comment='comment_like';
+    protected $fillableComments=['user_id', 'comment_id'];
+
+    public function likeComments(): BelongsTo {
+        return $this ->belongsTo(Comments::class);
+    }
 }
