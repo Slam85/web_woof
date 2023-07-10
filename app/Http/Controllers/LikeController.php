@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
-use App\Models\Posts;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
     public function toggle(String $id)
     {
-        $post=Posts::findOrFail($id);
+        $post=Post::findOrFail($id);
         $user_id = Auth::user()->id;
 
         $liked = Like::where('post_id', $post->id)

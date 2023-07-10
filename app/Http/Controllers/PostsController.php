@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Posts;
+use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Comments;
 
@@ -19,7 +19,9 @@ class PostsController extends Controller
 
     public function welcome()
     {
-        $posts = Posts::latest()->get();
+
+        $posts = Post::latest()->get();
+       
         $comments = Comments::latest()->get();
 
         return view('welcome', compact('posts', 'comments'));
@@ -37,7 +39,7 @@ class PostsController extends Controller
             'content' => 'required',
         ]);
 
-        $post = new Posts();
+        $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = auth()->id();
@@ -49,7 +51,7 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         return view('posts.edit', compact('post'));
     }
 
@@ -61,7 +63,7 @@ class PostsController extends Controller
             'content' => 'required',
         ]);
 
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -70,7 +72,7 @@ class PostsController extends Controller
     }
 
 
-    public function destroy(Posts $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('index')->with('success', 'Post deleted successfully.');
