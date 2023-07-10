@@ -63,7 +63,7 @@ class CommentsController extends Controller
             'like' => 0,
         ]);
 
-        return redirect('/')->with('success', 'Comment successfully created.');
+        return redirect('/')->with('success', '✔️ Comment successfully created.');
     }
 
     /**
@@ -112,6 +112,6 @@ class CommentsController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return redirect()->route('welcome');
+        return redirect()->route('welcome')->with('success', '✔️ Comment successfully deleted.');;
     }
 }
