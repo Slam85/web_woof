@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
-class Posts extends Model
+class Post extends Model
 {
 
     public function user()

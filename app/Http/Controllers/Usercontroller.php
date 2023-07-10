@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,8 @@ class Usercontroller extends Controller
 
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
-
             return redirect('/');
         }
-
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -52,9 +51,7 @@ class Usercontroller extends Controller
         $email = request('email');
         $picture = $request->file('image');
         $password = request('password');
-
         $uuid = Str::uuid()->toString();
-
         User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid' => $uuid]);
 
         if ($picture != "") {
@@ -63,11 +60,9 @@ class Usercontroller extends Controller
             $picture = "images/picture.jpg";
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
-
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
-
-            return redirect('/');
+            return redirect()->route('welcome')->with('success', '🤝 Account successfully created.');
         }
     }
 
@@ -103,7 +98,6 @@ class Usercontroller extends Controller
     public function deconnexion()
     {
         auth()->logout();
-
         return redirect('/');
     }
 
@@ -114,6 +108,7 @@ class Usercontroller extends Controller
         $directory = 'public/images/' . $del->uuid . '.jpg';
         Storage::delete($directory);
         $del->delete();
-        return redirect('welcome');
+        auth()->logout();
+        return redirect()->route('welcome')->with('error', '👋 Account successfully deleted.');
     }
 }

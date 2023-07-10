@@ -3,6 +3,7 @@
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CommentLikeController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,9 @@ Route::fallback(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/likes/{id}', [LikeController::class, 'toggle'])->name('likes.create');
     Route::delete('/likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/likesComment/{id}', [CommentLikeController::class, 'toggleComments'])->name('likesComment.create');
+    Route::delete('/likesComment/{id}', [CommentLikeController::class, 'destroy'])->name('likesComment.destroy');
 });

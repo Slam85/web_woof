@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Posts;
+use App\Models\Post;
 use App\Http\Controllers\Controller;
-use App\Models\Comments;
+use App\Models\Comment;
+use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -21,15 +22,21 @@ class PostsController extends Controller
 
     public function welcome()
     {
-        $posts = Posts::latest()->get();
+        $posts = Post::latest()->get();
         foreach ($posts as $post) {
             $list[] = $post->id;
         }
         $upid = $post->upid;
-        $comments = Comments::whereIn('post_id', $list)->get();
+        $comments = Comment::whereIn('post_id', $list)->get();
         $directory = 'public/images/' . $upid . '.jpg';
 
         return view('welcome', compact('posts', 'comments', 'directory'));
+
+        $posts = Post::latest()->get();
+        $comments = Comment::latest()->get();
+        $like = Like::where('user_id', Auth::id())
+            ->first();
+        return view('welcome', compact('posts', 'comments', 'like'));
     }
 
     public function create()
@@ -48,14 +55,14 @@ class PostsController extends Controller
         ]);
         $picture = $request->file('image');
 
-        $post = new Posts();
+        $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         $upid = $post->id;
         $post->user_id = auth()->id();
         $post->save();
 
-        Posts::create(['title', 'content', 'upid']);
+        Post::create(['title', 'content', 'upid']);
 
 
 
@@ -67,7 +74,7 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         return view('posts.edit', compact('post'));
     }
 
@@ -81,7 +88,7 @@ class PostsController extends Controller
 
         ]);
 
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->upid = $request->upid;
@@ -91,7 +98,7 @@ class PostsController extends Controller
     }
 
 
-    public function destroy(Posts $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('index')->with('success', 'Post deleted successfully.');

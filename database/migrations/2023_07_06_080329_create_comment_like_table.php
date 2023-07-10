@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,10 +14,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comment_like', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id');
+            $table->increments('id');
+            $table->foreignidFor(User::class)
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->boolean('liked')->default(false);
-            $table->bigInteger('comment_id');
+            $table->foreignidFor(Comment::class)
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

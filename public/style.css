@@ -14,15 +14,16 @@
 
 .likes {
     display: flex;
+    flex-direction: row;
     height: 30px;
     width: 30px;
-}
-
-.commentslikes {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
 }
+
+.likes:hover {
+    opacity: 0.2;
+}
+
 
 .swing {
     -webkit-transform-origin: top center;
@@ -128,6 +129,7 @@
 body::-webkit-scrollbar {
     display: none;
 }
+
 .accordion-button:not(.collapsed) {
     color: #0c63e4;
     background-color: white;
