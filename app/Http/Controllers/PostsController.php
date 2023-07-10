@@ -61,7 +61,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $upid = $post->id;
+        $post->upid = $request->upid;
         $post->user_id = auth()->id();
         $post->save();
 

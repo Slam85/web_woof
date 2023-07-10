@@ -35,7 +35,7 @@ class CommentsController extends Controller
             $list[] = $post->id;
         }
         $comments = Comment::whereIn('post_id', $list)->get();
-        $like=CommentLike::where('user_id', Auth::id())->first();
+        $like = CommentLike::where('user_id', Auth::id())->first();
 
         return view('welcome', compact('posts', 'comments', 'like'));
         //
