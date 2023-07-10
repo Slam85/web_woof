@@ -23,7 +23,7 @@ class PostsController extends Controller
     {
 
         $posts = Post::latest()->get();    
-        $comments = Comments::latest()->get();
+        $comments = Comment::latest()->get();
         $like = Like::where('user_id', Auth::id())
         ->first();
         return view('welcome', compact('posts', 'comments','like'));

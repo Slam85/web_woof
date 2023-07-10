@@ -26,14 +26,14 @@ class LikeController extends Controller
             $post->unlike();
             return redirect('/')->with('success', '👎 You hate this.');
         }
+        return redirect('/');
     }
-  
-    return redirect('/');
-    }
-}
+
+
+    
     public function toggleComments(String $id)
     {
-        $comment = Comments::findOrFail($id);
+        $comment = CommentLike::findOrFail($id);
         $user_id = Auth::user()->id;
 
         $liked = Like::where('comment_id', $comment->id)
@@ -47,6 +47,4 @@ class LikeController extends Controller
             $comment->unlike();
             return redirect('/')->with('success', '👎 You hate this.');
         }
-    }
-}
-
+    }}
