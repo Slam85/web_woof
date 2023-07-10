@@ -25,10 +25,8 @@ class Usercontroller extends Controller
 
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
-
             return redirect('/');
         }
-
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -52,9 +50,7 @@ class Usercontroller extends Controller
         $email = request('email');
         $picture = $request->file('image');
         $password = request('password');
-
         $uuid = Str::uuid()->toString();
-
         User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid' => $uuid]);
 
         if ($picture != "") {
@@ -63,10 +59,8 @@ class Usercontroller extends Controller
             $picture = "images/picture.jpg";
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
-
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
-
             return redirect()->route('welcome')->with('success', 'User successfully created.');
         }
     }
@@ -103,7 +97,6 @@ class Usercontroller extends Controller
     public function deconnexion()
     {
         auth()->logout();
-
         return redirect('/');
     }
 
@@ -114,7 +107,6 @@ class Usercontroller extends Controller
         $directory = 'public/images/' . $del->uuid . '.jpg';
         Storage::delete($directory);
         $del->delete();
-
         auth()->logout();
         return redirect()->route('welcome')->with('error', 'User successfully deleted.');
     }

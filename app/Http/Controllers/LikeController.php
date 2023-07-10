@@ -13,7 +13,6 @@ class LikeController extends Controller
     {
         $post = Post::findOrFail($id);
         $user_id = Auth::user()->id;
-
         $liked = Like::where('post_id', $post->id)
             ->where('user_id', $user_id)
             ->first();
@@ -32,7 +31,6 @@ class LikeController extends Controller
     {
         $comment = Comments::findOrFail($id);
         $user_id = Auth::user()->id;
-
         $liked = Like::where('comment_id', $comment->id)
             ->where('user_id', $user_id)
             ->first();
