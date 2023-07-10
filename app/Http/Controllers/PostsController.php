@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Http\Controllers\Controller;
 use App\Models\Comments;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -30,6 +31,11 @@ class PostsController extends Controller
 
     public function create()
     {
+
+        $upid = Str::upid()->toString();
+        Posts::create(['upid' => $upid]);
+
+
         return view('posts.create');
     }
 
@@ -38,11 +44,13 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'upid' => 'nullable'
         ]);
 
         $post = new Posts();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->upid = $request->upid;
         $post->user_id = auth()->id();
         $post->save();
 
@@ -62,11 +70,14 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'upid' => 'nullable'
+
         ]);
 
         $post = Posts::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->upid = $request->upid;
         $post->save();
 
         return redirect()->route('index')->with('success', 'Post updated successfully.');
