@@ -57,9 +57,9 @@ class Usercontroller extends Controller
 
         User::create(['username' => $username, 'email' => $email, 'password' => $password, 'uuid' => $uuid]);
 
-        if($picture != ""){
-            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');}
-        else {
+        if ($picture != "") {
+            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
+        } else {
             $picture = "images/picture.jpg";
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
@@ -87,11 +87,12 @@ class Usercontroller extends Controller
         $update->password = request('password');
         $uuid = request('uuid');
         $picture = $request->file('image');
-        $directory='public/images/' . $uuid . '.jpg';
+        $directory = 'public/images/' . $uuid . '.jpg';
         $update->save();
-        if($picture != ""){
+        if ($picture != "") {
             Storage::delete($directory);
-            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');}
+            Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
+        }
         return redirect('/');
     }
 
@@ -107,9 +108,10 @@ class Usercontroller extends Controller
     }
 
     public function destroy($id)
-    {   auth()->logout();
+    {
+        auth()->logout();
         $del = User::findOrFail($id);
-        $directory='public/images/' . $del->uuid . '.jpg';
+        $directory = 'public/images/' . $del->uuid . '.jpg';
         Storage::delete($directory);
         $del->delete();
         return redirect('welcome');
