@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('post_like', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->increments('id');
             $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onDelete('cascade')
@@ -23,8 +23,6 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->primary(['user_id','post_id']);
         });
     }
 
