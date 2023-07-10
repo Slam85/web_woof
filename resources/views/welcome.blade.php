@@ -55,13 +55,13 @@
                                 <div class="col-auto">
                                     <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
                                         @if($post->like != null && $like != null && $like['user_id'] != null)
-                                            @if ($like['user_id'] == Auth::id()  )
-                                                <img src="/images/liked.jpg" />
-                                            @elseif($like != 0)
-                                                <img src="/images/images.png" />
-                                            @endif
-                                            @else
-                                                <img src="/images/images.png" />
+                                        @if ($like['user_id'] == Auth::id() )
+                                        <img src="/images/liked.jpg" />
+                                        @elseif($like != 0)
+                                        <img src="/images/images.png" />
+                                        @endif
+                                        @else
+                                        <img src="/images/images.png" />
                                         @endif
                                         <p class="m-2">{{$post->like}}</p>
                                     </a>
@@ -78,41 +78,38 @@
                             </h2>
                             <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
-
-                                        @foreach ($comments as $comment)
-                                        <div class="row m-2">
+                                    @foreach ($comments as $comment)
+                                    <div class="row m-2">
                                         @if ($comment->post_id == $post->id)
                                         <div class="col-6">
                                             <span class="me-2" style="height:25px;"> {{$comment->content}}</span>
                                         </div>
                                         <div class="col-2">
-                                                @if ($comment->user_id == Auth::id())
-                                                        <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" name="delete" class="btn btn-outline-danger" style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
-                                                        </form>
-                                                @endif
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <a style="text-decoration:none; color:black;" href="{{route('likesComment.create', $comment->id)}}" class="likes">
-                                                        @if($comment->like != null && $commentLike != null && $commentLike['user_id'] != null)
-                                                            @if ($commentLike->user_id === Auth::id())
-                                                                <img src="/images/liked.jpg" />
-                                                            @elseif($commentLike != 0)
-                                                                <img src="/images/images.png" />
-                                                            @endif
-                                                            @else
-                                                                <img src="/images/images.png" />
-                                                        @endif
-                                                                <p class="m-2">{{$comment->like}}</p>
-                                                        </a>
-                                                    </div>
-                                                
-                                                
-                                        @endif
+                                            @if ($comment->user_id == Auth::id())
+                                            <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" name="delete" class="btn btn-outline-danger" style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
+                                            </form>
+                                            @endif
                                         </div>
-                                        @endforeach
+                                        <div class="col-2">
+                                            <a style="text-decoration:none; color:black;" href="{{route('likesComment.create', $comment->id)}}" class="likes">
+                                                @if($comment->like != null && $commentLike != null && $commentLike['user_id'] != null)
+                                                @if ($commentLike->user_id === Auth::id())
+                                                <img src="/images/liked.jpg" />
+                                                @elseif($commentLike != 0)
+                                                <img src="/images/images.png" />
+                                                @endif
+                                                @else
+                                                <img src="/images/images.png" />
+                                                @endif
+                                                <p class="m-2">{{$comment->like}}</p>
+                                            </a>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
