@@ -74,3 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/likes/{id}', [LikeController::class, 'toggle'])->name('likes.create');
     Route::delete('/likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/likesComment/{id}', [LikeController::class, 'toggleComments'])->name('likesComment.create');
+    Route::delete('/likesComment/{id}', [LikeController::class, 'destroy'])->name('likesComment.destroy');
+});

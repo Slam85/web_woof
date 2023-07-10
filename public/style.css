@@ -18,6 +18,10 @@
     width: 30px;
 }
 
+.likes:hover {
+    opacity: 0.2;
+}
+
 .commentslikes {
     display: flex;
     flex-direction: row;
@@ -128,6 +132,7 @@
 body::-webkit-scrollbar {
     display: none;
 }
+
 .accordion-button:not(.collapsed) {
     color: #0c63e4;
     background-color: white;
