@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'My Posts')
-
 @section('content')
 
 
@@ -31,4 +30,5 @@
         </div>
     </div>
     @endforeach
-</div @endsection
+</div>
+@endsection

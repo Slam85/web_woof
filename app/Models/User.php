@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Posts;
 use App\Models\Post;
 use App\Models\Comments;
 
@@ -52,6 +53,16 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     public function comment()
+    {
+        return $this->hasMany(Comments::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(likes::class);
+    }
+
+    public function comments()
     {
         return $this->hasMany(Comments::class);
     }
