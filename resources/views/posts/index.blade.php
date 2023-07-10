@@ -13,7 +13,7 @@
 <script>
     setTimeout(function() {
         document.getElementById('success-message').style.display = 'none';
-    }, 2000); // Modifier le délai en millisecondes (ici, 5000 ms = 5 secondes)
+    }, 2000); // Modifier le délai en millisecondes
 </script>
 
 <div class="row d-flex wrap m-3">
@@ -31,5 +31,4 @@
         </div>
     </div>
     @endforeach
-</div
-@endsection
+</div @endsection

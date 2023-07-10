@@ -46,4 +46,10 @@ class Comments extends Model
         'post_id',
         'comment_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
