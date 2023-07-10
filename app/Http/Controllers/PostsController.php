@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
-use App\Models\Comments;
+use App\Models\Comment;
 
 class PostsController extends Controller
 {
@@ -22,7 +22,7 @@ class PostsController extends Controller
 
         $posts = Post::latest()->get();
        
-        $comments = Comments::latest()->get();
+        $comments = Comment::latest()->get();
 
         return view('welcome', compact('posts', 'comments'));
     }

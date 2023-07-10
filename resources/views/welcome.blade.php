@@ -59,21 +59,20 @@
                                     @if ($comment->post_id == $post->id)
                                     <span class="me-2" style="height:25px;"> {{$comment->content}}
                                         @if ($comment->user_id == Auth::id())
-
                                         <form action="{{ route('comment.destroy', $comment) }}" method="POST"
                                             class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" name="delete" class="btn btn-outline-danger"
                                                 style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
+                                            <div class="col-2 likes d-flex">
+                                                <a style="text-decoration:none; color:black;"
+                                                    href="{{route('likesComment.create', $comment->id)}}">
+                                                    <img src="/images/images.png" style="height:30px; width:30px" />
+                                                    <p class="m-2">{{$comment->like}}</p>
+                                                </a>
+                                            </div>
                                         </form>
-                                        <div class="col-auto">
-                                            <a style="text-decoration:none; color:black;"
-                                                href="{{route('likesComment.create', $comment->id)}}" class="likes">
-                                                <img src="/images/images.png" />
-                                                <p class="m-2">{{$comment->likes}}</p>
-                                            </a>
-                                        </div>
                                     </span>
                                     @endif
                                     @endif
