@@ -109,7 +109,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comment)
+    public function destroy(Comment $comment)
     {
         $comment->delete();
         return redirect()->route('welcome');

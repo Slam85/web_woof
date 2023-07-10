@@ -100,9 +100,17 @@ setTimeout(function() {
                                         </form>
                                         <div class="col-auto">
                                             <a style="text-decoration:none; color:black;"
-                                                href="{{route('likesComment.create', $comment->id)}}" class="likes">
+                                                href="{{route('likes.create', $post->id)}}" class="likes">
+                                                @if($post->like != null)
+                                                @if ($like['user_id'] == Auth::id() )
+                                                <img src="/images/liked.jpg" />
+                                                @elseif($like != 0)
                                                 <img src="/images/images.png" />
-                                                <p class="m-2">{{$comment->likes}}</p>
+                                                @endif
+                                                @else
+                                                <img src="/images/images.png" />
+                                                @endif
+                                                <p class="m-2">{{$post->like}}</p>
                                             </a>
                                         </div>
                                     </span>
