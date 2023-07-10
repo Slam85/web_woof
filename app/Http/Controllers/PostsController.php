@@ -19,8 +19,9 @@ class PostsController extends Controller
 
     public function welcome()
     {
+
         $posts = Post::latest()->get();
-        
+       
         $comments = Comments::latest()->get();
 
         return view('welcome', compact('posts', 'comments'));
