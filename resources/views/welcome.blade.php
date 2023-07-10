@@ -9,9 +9,9 @@
 @endif
 
 <script>
-setTimeout(function() {
-    document.getElementById('warning-message').style.display = 'none';
-}, 2000); // Modifier le délai en millisecondes
+    setTimeout(function() {
+        document.getElementById('danger-message').style.display = 'none';
+    }, 2000); // Modifier le délai en millisecondes
 </script>
 
 @if(session('success'))
@@ -21,9 +21,9 @@ setTimeout(function() {
 @endif
 
 <script>
-setTimeout(function() {
-    document.getElementById('success-message').style.display = 'none';
-}, 2000); // Modifier le délai en millisecondes
+    setTimeout(function() {
+        document.getElementById('success-message').style.display = 'none';
+    }, 2000); // Modifier le délai en millisecondes
 </script>
 
 
@@ -47,18 +47,13 @@ setTimeout(function() {
                             @csrf
                             <div class="row d-flex align-items-center mt-2">
                                 <div class="col-auto">
-
-                                    <input class="form-control" type="text" name="content" placeholder="Add comment"
-                                        value="{{ old('content') }}">
-
-
+                                    <input class="form-control" type="text" name="content" placeholder="Add comment" value="{{ old('content') }}">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
                                 </div>
                                 <div class="col-auto">
-                                    <a style="text-decoration:none; color:black;"
-                                        href="{{route('likes.create', $post->id)}}" class="likes">
+                                    <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
                                         @if($post->like != null && $like != null && $like['user_id'] != null)
                                             @if ($like['user_id'] == Auth::id()  )
                                                 <img src="/images/liked.jpg" />
@@ -77,19 +72,13 @@ setTimeout(function() {
                     <div class="accordion" id="{{$post->title}}">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-
-                                <a style="text-decoration:none; color:black;" class="accordion-button" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse{{$post->id}}"
-                                    aria-expanded="true" aria-controls="collapse{{$post->id}}">
+                                <a style="text-decoration:none; color:black;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$post->id}}" aria-expanded="true" aria-controls="collapse{{$post->id}}">
                                     Comments
                                 </a>
                             </h2>
-                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse "
-                                data-bs-parent="#{{$post->id}}">
-
-
-
+                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
+
                                         @foreach ($comments as $comment)
                                         <div class="row m-2">
                                         @if ($comment->post_id == $post->id)
