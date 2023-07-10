@@ -14,19 +14,16 @@
 
 .likes {
     display: flex;
+    flex-direction: row;
     height: 30px;
     width: 30px;
+    justify-content: space-between;
 }
 
 .likes:hover {
     opacity: 0.2;
 }
 
-.commentslikes {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 .swing {
     -webkit-transform-origin: top center;

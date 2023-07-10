@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\CommentLike;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +24,14 @@ class LikeController extends Controller
             $post->unlike();
             return redirect('/')->with('success', '👎 You hate this!!');
         }
+        return redirect('/');
     }
 
 
+    
     public function toggleComments(String $id)
     {
-        $comment = Comments::findOrFail($id);
+        $comment = CommentLike::findOrFail($id);
         $user_id = Auth::user()->id;
         $liked = Like::where('comment_id', $comment->id)
             ->where('user_id', $user_id)
@@ -42,5 +44,4 @@ class LikeController extends Controller
             $comment->unlike();
             return redirect('/')->with('success', '👎 You hate this!!');
         }
-    }
-}
+    }}

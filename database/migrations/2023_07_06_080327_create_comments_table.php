@@ -20,6 +20,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->bigInteger('post_id');
+            $table->bigInteger('like');
             $table->timestamps();
         });
     }
