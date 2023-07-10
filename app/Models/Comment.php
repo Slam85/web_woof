@@ -6,21 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CommentLike;
 
-class Comments extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     public function like():HasMany{
-        return $this->hasMany(Like::class);
+        return $this->hasMany(CommentLike::class);
     }
 
     public function setLike(){
        $user_id =Auth::user()->id;
        $comment_id = $this->id;
+       //dd($this);
        $this->like++;  
        $this->save();     
-       Like::create(['user_id' => $user_id, 'comment_id' => $comment_id]);
+       CommentLike::create(['user_id' => $user_id, 'comment_id' => $comment_id]);
     }
 
     public function getLikes(){
@@ -31,7 +33,7 @@ class Comments extends Model
     public function unlike(){
         $user_id =Auth::user()->id;
         $comment_id = $this->id;
-        $like = Like::where('user_id', $user_id)
+        $like = CommentLike::where('user_id', $user_id)
             ->where('comment_id', $comment_id)
             ->first();
         $like->delete();
@@ -45,6 +47,7 @@ class Comments extends Model
         'content',
         'post_id',
         'comment_id',
+        'like',
     ];
 
     public function user()
@@ -52,4 +55,3 @@ class Comments extends Model
         return $this->belongsTo(User::class);
     }
 }
-
