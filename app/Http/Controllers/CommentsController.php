@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\CommentLike;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,9 @@ class CommentsController extends Controller
             $list[] = $post->id;
         }
         $comments = Comment::whereIn('post_id', $list)->get();
+        $like=CommentLike::where('user_id', Auth::id())->first();
 
-        return view('welcome', compact('posts', 'comments'));
+        return view('welcome', compact('posts', 'comments', 'like'));
         //
     }
 

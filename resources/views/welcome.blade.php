@@ -48,7 +48,8 @@ setTimeout(function() {
                             <div class="row d-flex align-items-center mt-2">
                                 <div class="col-auto">
 
-                                    <input class="form-control" type="text" name="content" placeholder="Add comment" value="{{ old('content') }}">
+                                    <input class="form-control" type="text" name="content" placeholder="Add comment"
+                                        value="{{ old('content') }}">
 
 
                                 </div>
@@ -56,20 +57,18 @@ setTimeout(function() {
                                     <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
                                 </div>
                                 <div class="col-auto">
-
-                                    <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
-
-
-                                    @if($post->like != null && $like != null && $like['user_id'] != null)
-                                    @if ($like['user_id'] == Auth::id())
+                                    <a style="text-decoration:none; color:black;"
+                                        href="{{route('likes.create', $post->id)}}" class="likes">
+                                        @if($post->like != null && $like != null && $like['user_id'] != null)
+                                        @if ($like['user_id'] == Auth::id())
                                         <img src="/images/liked.jpg" />
-                                    @elseif($like != 0)
+                                        @elseif($like != 0)
                                         <img src="/images/images.png" />
-                                    @endif
-                                     @else
+                                        @endif
+                                        @else
                                         <img src="/images/images.png" />
-                                    @endif
-                                            <p class="m-2">{{$post->like}}</p>
+                                        @endif
+                                        <p class="m-2">{{$post->like}}</p>
                                     </a>
                                 </div>
                             </div>
@@ -79,21 +78,24 @@ setTimeout(function() {
                         <div class="accordion-item">
                             <h2 class="accordion-header">
 
-                                <a style="text-decoration:none; color:black;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$post->id}}" aria-expanded="true" aria-controls="collapse{{$post->id}}">
+                                <a style="text-decoration:none; color:black;" class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse{{$post->id}}"
+                                    aria-expanded="true" aria-controls="collapse{{$post->id}}">
                                     Comments
                                 </a>
                             </h2>
-                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
+                            <div id="collapse{{$post->id}}" class="accordion-collapse collapse "
+                                data-bs-parent="#{{$post->id}}">
 
-                              
+
 
                                 <div class="accordion-body">
                                     @foreach ($comments as $comment)
                                     @if ($comment->post_id == $post->id)
                                     <span class="me-2" style="height:25px;"> {{$comment->content}}
                                         @if ($comment->user_id == Auth::id())
-
-                                        <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('comment.destroy', $comment) }}" method="POST"
+                                            class="d-inline">
 
                                             @csrf
                                             @method('DELETE')
@@ -101,20 +103,14 @@ setTimeout(function() {
                                                 style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
                                         </form>
                                         <div class="col-auto">
-
                                             <a style="text-decoration:none; color:black;"
-                                                href="{{route('likes.create', $post->id)}}" class="likes">
-                                                @if($post->like != null)
-                                                @if ($like['user_id'] == Auth::id() )
+                                                href="{{route('likesComment.create', $comment->id)}}" class="likes">
+                                                @if($comment->like != null)
                                                 <img src="/images/liked.jpg" />
-                                                @elseif($like != 0)
-                                                <img src="/images/images.png" />
-                                                @endif
                                                 @else
-
                                                 <img src="/images/images.png" />
                                                 @endif
-                                                <p class="m-2">{{$post->like}}</p>
+                                                <p class="m-2">{{$comment->like}}</p>
                                             </a>
                                         </div>
                                     </span>
