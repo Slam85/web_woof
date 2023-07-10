@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('comment_like', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignidFor(User::class)
+            $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->boolean('liked')->default(false);
-            $table->foreignidFor(Comment::class)
+            $table->foreignIdFor(Comment::class)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

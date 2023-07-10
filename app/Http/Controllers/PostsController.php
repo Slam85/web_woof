@@ -25,11 +25,11 @@ class PostsController extends Controller
 
         $posts = Post::latest()->get();    
         $comments = Comment::latest()->get();
-        $like = Like::where('user_id', Auth::id())
-        ->first();
-        $commentLike = CommentLike::where('user_id', Auth::id())
-        ->first();
-        return view('welcome', compact('posts', 'comments','like','commentLike'));
+        $current_id = Auth::id();
+        $likes = Like::all();
+        $commentLikes = CommentLike::all();
+
+        return view('welcome', compact('posts', 'comments','likes','commentLikes'));
     }
 
     public function create()
