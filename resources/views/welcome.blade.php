@@ -61,15 +61,15 @@
 
                                     <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
 
-                                        @if($post->like != null)
-                                                @if ($like['user_id']  ==  Auth::id() )
-                                                    <img src="/images/liked.jpg" />
-                                                @elseif($like != 0)
-                                                <img src="/images/images.png" />
-                                                @endif
-                                        @else
-                                            <img src="/images/images.png" />
-                                        @endif
+                                    @if($post->like != null && $like != null && $like['user_id'] != null)
+                                    @if ($like['user_id'] == Auth::id())
+                                        <img src="/images/liked.jpg" />
+                                    @elseif($like != 0)
+                                        <img src="/images/images.png" />
+                                    @endif
+                                     @else
+                                        <img src="/images/images.png" />
+                                    @endif
                                             <p class="m-2">{{$post->like}}</p>
                                     </a>
                                 </div>
