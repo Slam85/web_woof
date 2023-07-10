@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments;
-use App\Models\Posts;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -28,7 +28,7 @@ class CommentsController extends Controller
     {
 
         $user_id = Auth::user()->id;
-        $posts = Posts::where(['user_id', $user_id]);
+        $posts = Post::where(['user_id', $user_id]);
 
         foreach ($posts as $post) {
             $list[] = $post->id;
@@ -69,7 +69,7 @@ class CommentsController extends Controller
      */
     public function show(Comments $comments, string $id)
     {
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         $comments = $post->getComments();
 
 
