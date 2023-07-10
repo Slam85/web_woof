@@ -19,10 +19,10 @@ class LikeController extends Controller
 
         if (!$liked) {
             $post->setLike();
-            return redirect('/')->with('success', '👍 You like this.');
+            return redirect('/')->with('success', '👍 You like this!!');
         } else {
             $post->unlike();
-            return redirect('/')->with('success', '👎 You hate this.');
+            return redirect('/')->with('success', '👎 You hate this!!');
         }
     }
 
@@ -37,10 +37,10 @@ class LikeController extends Controller
 
         if (!$liked) {
             $comment->setLike();
-            return redirect('/')->with('success', '👍 You like this.');
+            return redirect('/')->with('success', '👍 You like this!!');
         } else {
             $comment->unlike();
-            return redirect('/')->with('success', '👎 You hate this.');
+            return redirect('/')->with('success', '👎 You hate this!!');
         }
     }
 }

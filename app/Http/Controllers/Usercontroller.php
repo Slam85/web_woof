@@ -61,7 +61,7 @@ class Usercontroller extends Controller
         }
         if (Auth::attempt($validate)) {
             $request->session()->regenerate();
-            return redirect()->route('welcome')->with('success', 'User successfully created.');
+            return redirect()->route('welcome')->with('success', '🤝 Account successfully created.');
         }
     }
 
@@ -87,7 +87,7 @@ class Usercontroller extends Controller
             Storage::delete($directory);
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
-        return redirect()->route('welcome')->with('success', 'User successfully updated.');
+        return redirect()->route('welcome')->with('success', '✔️ Account successfully updated.');
     }
 
     public function edit()
@@ -108,6 +108,6 @@ class Usercontroller extends Controller
         Storage::delete($directory);
         $del->delete();
         auth()->logout();
-        return redirect()->route('welcome')->with('error', 'User successfully deleted.');
+        return redirect()->route('welcome')->with('error', '👋 Account successfully deleted.');
     }
 }

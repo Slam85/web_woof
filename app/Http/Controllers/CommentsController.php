@@ -61,7 +61,7 @@ class CommentsController extends Controller
             'post_id' => $post_id
         ]);
 
-        return redirect('/')->with('success', 'Comment successfully created.');
+        return redirect('/')->with('success', '✔️ Comment successfully created.');
     }
 
     /**
@@ -110,6 +110,6 @@ class CommentsController extends Controller
     public function destroy(Comments $comment)
     {
         $comment->delete();
-        return redirect()->route('welcome');
+        return redirect()->route('welcome')->with('success', '✔️ Comment successfully deleted.');;
     }
 }
