@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
-use App\Models\Comments;
+use App\Models\Comment;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,7 @@ class PostsController extends Controller
     {
 
         $posts = Post::latest()->get();    
-        $comments = Comments::latest()->get();
+        $comments = Comment::latest()->get();
         $like = Like::where('user_id', Auth::id())
         ->first();
         return view('welcome', compact('posts', 'comments','like'));

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +33,7 @@ class CommentsController extends Controller
         foreach ($posts as $post) {
             $list[] = $post->id;
         }
-        $comments = Comments::whereIn('post_id', $list)->get();
+        $comments = Comment::whereIn('post_id', $list)->get();
 
         return view('welcome', compact('posts', 'comments'));
         //
@@ -51,23 +51,25 @@ class CommentsController extends Controller
         $comments = [
             'user_id' => $user_id,
             'content' => $request->content,
-            'post_id' => $post_id
+            'post_id' => $post_id,
+            'like' => 0,
 
         ];
 
-        Comments::create([
+        Comment::create([
             'user_id' => $user_id,
             'content' => $request->content,
-            'post_id' => $post_id
+            'post_id' => $post_id,
+            'like' => 0,
         ]);
 
-        return redirect('/')->with('success', 'Comment successfully created.');
+        return redirect('/')->with('success', '✔️ Comment successfully created.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comments $comments, string $id)
+    public function show(Comment $comments, string $id)
     {
         $post = Post::findOrFail($id);
         $comments = $post->getComments();
@@ -81,7 +83,7 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Comments $comments)
+    public function edit(Comment $comments)
     {
         return view('welcome', compact('comments'));
     }
@@ -89,7 +91,7 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comment $comments)
     {
         $request->validate([
             'content' => 'required',
@@ -107,9 +109,9 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comment)
+    public function destroy(Comment $comment)
     {
         $comment->delete();
-        return redirect()->route('welcome');
+        return redirect()->route('welcome')->with('success', '✔️ Comment successfully deleted.');;
     }
 }
