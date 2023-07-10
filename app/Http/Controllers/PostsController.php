@@ -20,10 +20,7 @@ class PostsController extends Controller
     public function welcome()
     {
         $posts = Posts::latest()->get();
-        foreach ($posts as $post) {
-            $list[] = $post->id;
-        }
-        $comments = Comments::whereIn('post_id', $list)->get();
+        $comments = Comments::latest()->get();
 
         return view('welcome', compact('posts', 'comments'));
     }
