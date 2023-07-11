@@ -15,7 +15,7 @@
     <div class="row d-flex justify-content-center">
         <div class="card" style="width: 40rem; height: 20rem;">
             <div class="card-body d-flex justify-content-center ">
-                <form action="{{ route('posts.store') }}" method="POST">
+                <form action="{{ route('posts.store') }}" method="POST" enctype='multipart/form-data'>
                     @csrf
                     <div class="form-group" style="width: 35rem;">
                         <label for="title">Title</label>

@@ -51,26 +51,21 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $info = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'upid' => 'mimes:jpg,png,gif|max8192'
+            'image' => 'mimes:jpg,png,gif|max:8192'
         ]);
+
         $picture = $request->file('image');
+        $img = Storage::putFile('public/images', $picture);
 
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->upid = $request->upid;
+        $post->image = $img;
         $post->user_id = auth()->id();
         $post->save();
-
-        Post::create(['title', 'content', 'upid']);
-
-
-
-        Storage::putFileAs('public/images', $picture, $upid . '.jpg');
-
         return redirect()->route('welcome')->with('success', 'Post created successfully.');
     }
 
