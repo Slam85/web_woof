@@ -54,19 +54,12 @@
                                     <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
                                 </div>
                                 <div class="col-auto">
-                                    <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
-                                        @if($post->like != null)
-                                        @foreach ($likes as $like)
-                                        @if ($like->post_id == $post->id && $like->user_id == Auth::id() )
-                                        <img src="/images/liked.jpg" />
-                                        @endif
-                                        @endforeach
-                                        @else
-                                        <img src="/images/images.png" />
-                                        @endif
-                                        <p class="m-2">{{$post->like}}</p>
+                                    <a style="text-decoration:none; color:black;" href="{{ route('likes.create', $post->id) }}" class="likes">
+                                        <img src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                        <p class="m-2">{{ $post->like }}</p>
                                     </a>
                                 </div>
+
                             </div>
                         </form>
                     </div>
@@ -96,21 +89,11 @@
                                             @endif
                                         </div>
                                         <div class="col-2">
-                                            <a style="text-decoration:none; color:black;" href="{{route('likesComment.create', $comment->id)}}" class="likes">
-                                                @if($comment->like != null)
-                                                @foreach ($commentLikes as $commentLike)
-                                                @if ($commentLike->comment_id == $comment->id && $commentLike->user_id == Auth::id() )
-                                                <img src="/images/liked.jpg" />
-                                                @endif
-                                                @endforeach
-                                                @else
-                                                <img src="/images/images.png" />
-                                                @endif
-                                                <p class="m-2">{{$comment->like}}</p>
+                                            <a style="text-decoration:none; color:black;" href="{{ route('likesComment.create', $comment->id) }}" class="likes">
+                                                <img src="{{ $commentLikes->contains(function ($like) use ($comment) {return $like->comment_id === $comment->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                                <p class="m-2">{{ $comment->like }}</p>
                                             </a>
                                         </div>
-
-
                                         @endif
                                     </div>
                                     @endforeach
@@ -125,7 +108,6 @@
         </div>
         @endforeach
     </div>
-
 </section>
 @endsection
 @section('footer')
