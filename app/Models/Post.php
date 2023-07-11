@@ -46,6 +46,9 @@ class Post extends Model
             ->first();
         $like->delete();
         $this->like--;
+        if ($this->like == 0) {
+            $this->like = null;
+        };
         $this->save();
     }
 
