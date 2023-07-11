@@ -16,42 +16,46 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function like():HasMany{
+    public function like(): HasMany
+    {
         return $this->hasMany(Like::class);
     }
 
-    public function setLike(){
-       $user_id =Auth::user()->id;
-       $post_id = $this->id;
-       $this->like++;  
-       $this->save();     
-       Like::create(['user_id' => $user_id, 'post_id' => $post_id]);
+    public function setLike()
+    {
+        $user_id = Auth::user()->id;
+        $post_id = $this->id;
+        $this->like++;
+        $this->save();
+        Like::create(['user_id' => $user_id, 'post_id' => $post_id]);
     }
 
-    public function getLikes(){
-        
-       return $this->like;
+    public function getLikes()
+    {
+
+        return $this->like;
     }
 
 
-    public function unlike(){
-        $user_id =Auth::user()->id;
+    public function unlike()
+    {
+        $user_id = Auth::user()->id;
         $post_id = $this->id;
         $like = Like::where('user_id', $user_id)
             ->where('post_id', $post_id)
             ->first();
         $like->delete();
         $this->like--;
-        if($this->like == 0){
+        if ($this->like == 0) {
             $this->like = null;
-        };   
-       $this->save();  
+        };
+        $this->save();
     }
 
 
     protected $fillable = [
         'title',
         'content',
-        'image',
+        'upid',
     ];
 }

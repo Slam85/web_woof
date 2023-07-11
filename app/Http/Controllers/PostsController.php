@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\CommentLike;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -22,18 +23,29 @@ class PostsController extends Controller
 
     public function welcome()
     {
+        $posts = Post::latest()->get();
+        foreach ($posts as $post) {
+            $list[] = $post->id;
+        }
+        $upid = $post->upid;
+        $comments = Comment::whereIn('post_id', $list)->get();
+        $directory = 'public/images/' . $upid . '.jpg';
 
-        $posts = Post::latest()->get();    
+        return view('welcome', compact('posts', 'comments', 'directory'));
+
+        $posts = Post::latest()->get();
         $comments = Comment::latest()->get();
         $current_id = Auth::id();
         $likes = Like::all();
         $commentLikes = CommentLike::all();
 
-        return view('welcome', compact('posts', 'comments','likes','commentLikes'));
+        return view('welcome', compact('posts', 'comments', 'likes', 'commentLikes'));
     }
 
     public function create()
     {
+
+
         return view('posts.create');
     }
 
@@ -42,13 +54,22 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'upid' => 'mimes:jpg,png,gif|max8192'
         ]);
+        $picture = $request->file('image');
 
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->upid = $request->upid;
         $post->user_id = auth()->id();
         $post->save();
+
+        Post::create(['title', 'content', 'upid']);
+
+
+
+        Storage::putFileAs('public/images', $picture, $upid . '.jpg');
 
         return redirect()->route('welcome')->with('success', 'Post created successfully.');
     }
@@ -66,11 +87,14 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'upid' => 'nullable'
+
         ]);
 
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->upid = $request->upid;
         $post->save();
 
         return redirect()->route('index')->with('success', 'Post updated successfully.');

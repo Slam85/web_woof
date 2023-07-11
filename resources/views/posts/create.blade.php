@@ -25,6 +25,12 @@
                         <label for="content">Content</label>
                         <textarea style=" height: 10rem;" name="content" class="form-control">{{ old('content') }}</textarea>
                     </div>
+                    <div class="col-auto">
+                        <label for="name">Post an image: </label>
+                    </div>
+                    <div class="col-auto">
+                        <input class="form-control" type="file" name="image" accept="image/png, image/jpeg, image/jpg" />
+                    </div>
                     <button type="submit" class="btn btn-outline-danger mt-2">Create</button>
                 </form>
             </div>

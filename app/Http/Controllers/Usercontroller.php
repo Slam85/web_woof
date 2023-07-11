@@ -87,7 +87,7 @@ class Usercontroller extends Controller
             Storage::delete($directory);
             Storage::putFileAs('public/images', $picture, $uuid . '.jpg');
         }
-        return redirect()->route('welcome')->with('success', '✔️ Account successfully updated.');
+        return redirect('/');
     }
 
     public function edit()
@@ -102,7 +102,7 @@ class Usercontroller extends Controller
 
     public function destroy($id)
     {
-
+        auth()->logout();
         $del = User::findOrFail($id);
         $directory = 'public/images/' . $del->uuid . '.jpg';
         Storage::delete($directory);
