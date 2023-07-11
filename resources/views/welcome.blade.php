@@ -35,8 +35,10 @@ setTimeout(function() {
             <div class="card" style="min-height:350px;">
                 <div class="card-body">
                     <h5 class="card-title">{{$post->title}}</h5>
-                    <p class="card-text">{{$post->content}}</p>
+                    <p class="card-text">{{$post->content}} </p>
+                    @if ($post->image != "" )
                     <img src="{{Storage::url($post->image)}}" width="200" />
+                    @endif
 
                 </div>
                 <div class="card-footer">
@@ -60,8 +62,14 @@ setTimeout(function() {
                                 <div class="col-auto">
                                     <a style="text-decoration:none; color:black;"
                                         href="{{ route('likes.create', $post->id) }}" class="likes">
+                                        <<<<<<< HEAD <img
+                                            src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                        =======
+                                        @if ($likes != "")
                                         <img
                                             src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                        @endif
+                                        >>>>>>> Dev2
                                         <p class="m-2">{{ $post->like }}</p>
                                     </a>
                                 </div>
