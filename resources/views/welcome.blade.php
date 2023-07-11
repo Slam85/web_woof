@@ -35,11 +35,11 @@ setTimeout(function() {
             <div class="card" style="min-height:350px;">
                 <div class="card-body">
                     <h5 class="card-title">{{$post->title}}</h5>
-                    <p class="card-text">{{$post->content}}
-                        @if ($post->image != "" )
-                            <img src="{{Storage::url($post->image)}}" width="200"/> 
-                        @endif
-                    </p>
+                    <p class="card-text">{{$post->content}} </p>
+                    @if ($post->image != "" )
+                    <img src="{{Storage::url($post->image)}}" width="200" />
+                    @endif
+
                 </div>
                 <div class="card-footer">
                     <p class="card-text">Posted by: {{ $post->user->username }}</p>
@@ -49,7 +49,7 @@ setTimeout(function() {
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
 
-                        <form action="{{ route('comments.store', $post->id) }}" method="POST" >
+                        <form action="{{ route('comments.store', $post->id) }}" method="POST">
                             @csrf
                             <div class="row d-flex align-items-center mt-2">
                                 <div class="col-auto">
@@ -60,10 +60,12 @@ setTimeout(function() {
                                     <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
                                 </div>
                                 <div class="col-auto">
-                                    <a style="text-decoration:none; color:black;" href="{{ route('likes.create', $post->id) }}" class="likes">
-                                    @if ($likes != "")
-                                        <img src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
-                                    @endif
+                                    <a style="text-decoration:none; color:black;"
+                                        href="{{ route('likes.create', $post->id) }}" class="likes">
+                                        @if ($likes != "")
+                                        <img
+                                            src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                        @endif
                                         <p class="m-2">{{ $post->like }}</p>
                                     </a>
                                 </div>
@@ -92,16 +94,20 @@ setTimeout(function() {
                                         </div>
                                         <div class="col-2">
                                             @if ($comment->user_id == Auth::id())
-                                            <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('comment.destroy', $comment) }}" method="POST"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" name="delete" class="btn btn-outline-danger" style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
+                                                <button type="submit" name="delete" class="btn btn-outline-danger"
+                                                    style="border-radius: 50px;--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">X</button>
                                             </form>
                                             @endif
                                         </div>
                                         <div class="col-2">
-                                            <a style="text-decoration:none; color:black;" href="{{ route('likesComment.create', $comment->id) }}" class="likes">
-                                                <img src="{{ $commentLikes->contains(function ($like) use ($comment) {return $like->comment_id === $comment->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                            <a style="text-decoration:none; color:black;"
+                                                href="{{ route('likesComment.create', $comment->id) }}" class="likes">
+                                                <img
+                                                    src="{{ $commentLikes->contains(function ($like) use ($comment) {return $like->comment_id === $comment->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
                                                 <p class="m-2">{{ $comment->like }}</p>
                                             </a>
                                         </div>
