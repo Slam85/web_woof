@@ -54,19 +54,12 @@
                                     <button type="submit" name="add" class="btn btn-outline-danger">Add</button>
                                 </div>
                                 <div class="col-auto">
-                                    <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
-                                        @if($post->like != null)
-                                        @foreach ($likes as $like)
-                                        @if ($like->post_id == $post->id && $like->user_id == Auth::id() )
-                                        <img src="/images/liked.jpg" />
-                                        @endif
-                                        @endforeach
-                                        @else
-                                        <img src="/images/images.png" />
-                                        @endif
-                                        <p class="m-2">{{$post->like}}</p>
+                                    <a style="text-decoration:none; color:black;" href="{{ route('likes.create', $post->id) }}" class="likes">
+                                        <img src="{{ $likes->contains(function ($like) use ($post) {return $like->post_id === $post->id && $like->user_id === Auth::id();}) ? '/images/liked.jpg' : '/images/images.png' }}" />
+                                        <p class="m-2">{{ $post->like }}</p>
                                     </a>
                                 </div>
+
                             </div>
                         </form>
                     </div>
