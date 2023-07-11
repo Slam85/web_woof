@@ -37,10 +37,9 @@ class PostsController extends Controller
         return view('welcome', compact('posts', 'comments', 'likes', 'commentLikes', 'directory'));
     }
 
+
     public function create()
     {
-
-
         return view('posts.create');
     }
 
@@ -53,18 +52,18 @@ class PostsController extends Controller
         ]);
 
         $picture = $request->file('image');
-        if ($picture != "") {
+        if ($picture != null) {
             $img = Storage::putFile('public/images', $picture);
+        } else {
+            $img = null;
         }
-
-
-
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        if ($picture != "") {
+        if ($img != null) {
             $post->image = $img;
-        };
+        }
+
         $post->user_id = auth()->id();
         $post->save();
 
@@ -85,7 +84,7 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'upid' => 'nullable'
+            'image' => 'nullable'
 
         ]);
 
