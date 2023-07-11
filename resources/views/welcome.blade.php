@@ -29,7 +29,7 @@
 
 <section>
     <div class="row">
-        
+
         @foreach ($posts as $post)
         <div class="col-sm-6 mb-3 mb-m-0">
             <div class="card" style="min-height:350px;">
@@ -55,16 +55,14 @@
                                 </div>
                                 <div class="col-auto">
                                     <a style="text-decoration:none; color:black;" href="{{route('likes.create', $post->id)}}" class="likes">
-
                                         @if($post->like != null)
-                                            @foreach ($likes as $like)
-                                                @if ($like->post_id == $post->id && $like->user_id == Auth::id()  )
-                                                    <img src="/images/liked.jpg" />
-                                                @endif
-                                            @endforeach   
+                                        @foreach ($likes as $like)
+                                        @if ($like->post_id == $post->id && $like->user_id == Auth::id() )
+                                        <img src="/images/liked.jpg" />
+                                        @endif
+                                        @endforeach
                                         @else
-                                                <img src="/images/images.png" />
-
+                                        <img src="/images/images.png" />
                                         @endif
                                         <p class="m-2">{{$post->like}}</p>
                                     </a>
@@ -81,6 +79,7 @@
                             </h2>
                             <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
+
                                     @foreach ($comments as $comment)
                                     <div class="row m-2">
                                         @if ($comment->post_id == $post->id)
@@ -98,32 +97,20 @@
                                         </div>
                                         <div class="col-2">
                                             <a style="text-decoration:none; color:black;" href="{{route('likesComment.create', $comment->id)}}" class="likes">
-                                                @if($comment->like != null && $commentLike != null && $commentLike['user_id'] != null)
-                                                @if ($commentLike->user_id === Auth::id())
+                                                @if($comment->like != null)
+                                                @foreach ($commentLikes as $commentLike)
+                                                @if ($commentLike->comment_id == $comment->id && $commentLike->user_id == Auth::id() )
                                                 <img src="/images/liked.jpg" />
-                                                @elseif($commentLike != 0)
+                                                @endif
+                                                @endforeach
+                                                @else
                                                 <img src="/images/images.png" />
                                                 @endif
-
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <a style="text-decoration:none; color:black;" href="{{route('likesComment.create', $comment->id)}}" class="likes">
-                                                        @if($comment->like != null)
-                                                            @foreach ($commentLikes as $commentLike)
-                                                                @if ($commentLike->comment_id == $comment->id && $commentLike->user_id == Auth::id()  )
-                                                                    <img src="/images/liked.jpg" />
-                                                                @endif
-                                                            @endforeach   
-                                                            @else
-                                                                <img src="/images/images.png" />
-                                                            @endif
-                                                                <p class="m-2">{{$comment->like}}</p>
-                                                        </a>
-                                                    </div>
-                                                
-                                                
-                                        @endif
+                                                <p class="m-2">{{$comment->like}}</p>
+                                            </a>
                                         </div>
+
+
                                         @endif
                                     </div>
                                     @endforeach
