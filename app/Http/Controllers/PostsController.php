@@ -37,10 +37,9 @@ class PostsController extends Controller
         return view('welcome', compact('posts', 'comments', 'likes', 'commentLikes', 'directory'));
     }
 
+
     public function create()
     {
-
-
         return view('posts.create');
     }
 
@@ -77,7 +76,7 @@ class PostsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'upid' => 'nullable'
+            'image' => 'nullable'
 
         ]);
 
