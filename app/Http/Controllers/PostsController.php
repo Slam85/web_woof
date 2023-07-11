@@ -52,12 +52,18 @@ class PostsController extends Controller
         ]);
 
         $picture = $request->file('image');
+        if ($picture != null) {
         $img = Storage::putFile('public/images', $picture);
-
+        }
+        else {
+            $img = null;
+        }
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->image = $img;
+        if ($img != null) {
+        $post->image = $img;}
+
         $post->user_id = auth()->id();
         $post->save();
         return redirect()->route('welcome')->with('success', 'Post created successfully.');
