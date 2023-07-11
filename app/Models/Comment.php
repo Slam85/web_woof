@@ -19,7 +19,6 @@ class Comment extends Model
     public function setLike(){
        $user_id =Auth::user()->id;
        $comment_id = $this->id;
-       //dd($this);
        $this->like++;  
        $this->save();     
        CommentLike::create(['user_id' => $user_id, 'comment_id' => $comment_id]);
@@ -36,9 +35,12 @@ class Comment extends Model
         $like = CommentLike::where('user_id', $user_id)
             ->where('comment_id', $comment_id)
             ->first();
-        $like->delete();
-        $this->like--;  
-       $this->save();
+            $like->delete();
+            $this->like--;
+            if($this->like == 0){
+                $this->like = null;
+            };   
+           $this->save();  
     }
 
 
@@ -47,7 +49,6 @@ class Comment extends Model
         'content',
         'post_id',
         'comment_id',
-        'like',
     ];
 
     public function user()

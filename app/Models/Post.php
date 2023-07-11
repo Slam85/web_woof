@@ -41,7 +41,10 @@ class Post extends Model
             ->where('post_id', $post_id)
             ->first();
         $like->delete();
-        $this->like--;  
+        $this->like--;
+        if($this->like == 0){
+            $this->like = null;
+        };   
        $this->save();  
     }
 
