@@ -36,7 +36,9 @@ setTimeout(function() {
             <div class="card" style="min-height:350px;">
                 <div class="card-body">
                     <h5 class="card-title">{{$post->title}}</h5>
-                    <p class="card-text">{{$post->content}}{{$post->upid}}</p>
+                    <p class="card-text">{{$post->content}}
+                        <img src="{{Storage::url($post->image)}}" width="200"/> 
+                    </p>
                 </div>
                 <div class="card-footer">
                     <p class="card-text">Posted by: {{ $post->user->username }}</p>
@@ -46,7 +48,7 @@ setTimeout(function() {
                 <div class="row commentslikes">
                     <div class="col-auto mb-3 ms-3">
 
-                        <form action="{{ route('comments.store', $post->id) }}" method="POST">
+                        <form action="{{ route('comments.store', $post->id) }}" method="POST" >
                             @csrf
                             <div class="row d-flex align-items-center mt-2">
                                 <div class="col-auto">
