@@ -12,32 +12,72 @@
     @vite('public/style.css')
 </head>
 
-<body class="bg-secondary text-black bg-opacity-10 h-100">
+<body class="bg-secondary text-black bg-opacity-10 h-100 mb-3 pb-3">
+
     <header>
         @yield('navbar')
-        <nav class="navbar text-white bg-danger sticky-top p-2">
-            <span><img class="logonav" src="images/WEBWOOF.png" /></span>
-            @if (Route::has('login'))
-            @auth
-            <h3 class="d-flex justify-content-left">Woof, {{Auth::user()->username}}!</h3>
-            <span>
-                <a href="{{route ('user.edit')}}"><button type=" button"
-                        class="btn btn-outline-light">Profile</button></a>
-                <a href="{{route ('posts.create')}}"><button type="button" class="btn btn-outline-light">Create
-                        Post</button></a>
-                <a href="{{route ('deconnexion')}}"><button type="button" class="btn btn-outline-light">Log
-                        Out</button></a>
-                @else
-                <span>Welcome to WEBWOOF
-                    <a href="{{route ('login')}}"><button type="button" class="btn btn-outline-light">Log
-                            In</button></a>
-                    <a href="{{route ('register')}}"><button type="button"
-                            class="btn btn-outline-light">Register</button></a>
-                </span>
-            </span>
-            @endauth
+
+
+        <nav class="navbar navbar-expand-lg  fixed-top text-white bg-danger sticky-top p-2">
+            <div class="container-fluid">
+                <div class="row d-flex">
+                    <div class="col-auto">
+                        <a href="{{('/')}}">
+                            <img class="logonav" src="/images/WEBWOOF.jpg" />
+                        </a>
+                    </div>
+                    @if (Route::has('login'))
+                    @auth
+
+                    <div class="col-auto">
+                        <img class="logonav m-1" style="border-radius:10px;"
+                            src="{{ asset('storage/images/')}}/{{Auth::user()->uuid}}.jpg " />
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <h3> Woof, {{Auth::user()->username}}!</h3>
+                    </div>
+
+                    @else
+                    <div class="col-auto">
+
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <h3> Woof Welcome!</h3>
+                    </div>
+
+                    @endauth
+                    @endif
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 500px;">
+                    </ul>
+                    <li class="nav-item d-flex bg-danger ">
+                        @if (Route::has('login'))
+                        @auth
+                        <a href="{{route ('posts.create')}}"><button type="button"
+                                class="btn btn-outline-light m-2">Create Post</button></a>
+                        <a href="{{route ('index')}}"><button type=" button" class="btn btn-outline-light  m-2">My
+                                Posts</button></a>
+                        <a href="{{route ('user.edit')}}"><button type=" button"
+                                class="btn btn-outline-light  m-2">Profile</button></a>
+                        <a href="{{route ('deconnexion')}}"><button type="button"
+                                class="btn btn-outline-light  m-2">LogOut</button></a>
+                        @else
+                        <a href="{{route ('login')}}"><button type="button"
+                                class="btn btn-outline-light m-2">LogIn</button></a>
+                        <a href="{{route ('register')}}"><button type="button"
+                                class="btn btn-outline-light m-2">Register</button></a>
+                        @endauth
+                        @endif
+                    </li>
+                </div>
+            </div>
         </nav>
-        @endif
+
         <div class="p-3">
             <h1>@yield('title', 'LATEST POSTS')</h1>
         </div>
@@ -47,7 +87,7 @@
     </main>
 
     <footer
-        class="footer bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
+        class="footer fixed-bottom bg-danger text-white fw-light fs-6 d-flex justify-content-center text-align-center mt-2 pt-3">
         @yield('footer')
         <p class="text-center">
             WEBWOOF 2023 @ LeBocalAcademy © Diogo, Gérald, Jimmy, Héloïse

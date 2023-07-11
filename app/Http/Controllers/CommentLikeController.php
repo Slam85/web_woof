@@ -2,31 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\CommentLike;
-use App\Models\Like;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
-class LikeController extends Controller
+class CommentLikeController extends Controller
 {
-    public function toggle(String $id)
+
+    public function toggleComments(String $id)
     {
-        $post = Post::findOrFail($id);
+        $comment = Comment::findOrFail($id);
         $user_id = Auth::user()->id;
-        $liked = Like::where('post_id', $post->id)
+        $liked = CommentLike::where('comment_id', $comment->id)
             ->where('user_id', $user_id)
             ->first();
 
         if (!$liked) {
-            $post->setLike();
+            $comment->setLike();
             return redirect('/')->with('success', '👍 You like this!!');
         } else {
-            $post->unlike();
+            $comment->unlike();
             return redirect('/')->with('success', '👎 You hate this!!');
         }
-        return redirect('/');
     }
-
-
-    
-   }
+}

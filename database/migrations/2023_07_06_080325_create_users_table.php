@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('username', 50)->unique();
             $table->string('email', 100)->unique();
             $table->string('password', 100);
-            $table->string('picture')->nullable();
+            $table->string('uuid');
         });
     }
 
