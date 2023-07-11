@@ -29,7 +29,6 @@
 
 <section>
     <div class="row">
-
         @foreach ($posts as $post)
         <div class="col-sm-6 mb-3 mb-m-0">
             <div class="card" style="min-height:350px;">
@@ -59,7 +58,6 @@
                                         <p class="m-2">{{ $post->like }}</p>
                                     </a>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -72,7 +70,6 @@
                             </h2>
                             <div id="collapse{{$post->id}}" class="accordion-collapse collapse " data-bs-parent="#{{$post->id}}">
                                 <div class="accordion-body">
-
                                     @foreach ($comments as $comment)
                                     <div class="row m-2">
                                         @if ($comment->post_id == $post->id)
