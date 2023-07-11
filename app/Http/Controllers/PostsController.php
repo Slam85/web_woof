@@ -24,22 +24,17 @@ class PostsController extends Controller
     public function welcome()
     {
         $posts = Post::latest()->get();
-        foreach ($posts as $post) {
-            $list[] = $post->id;
-        }
-        $upid = $post->upid;
+        $list = $posts->pluck('id')->toArray();
         $comments = Comment::whereIn('post_id', $list)->get();
-        $directory = 'public/images/' . $upid . '.jpg';
-
-        return view('welcome', compact('posts', 'comments', 'directory'));
-
-        $posts = Post::latest()->get();
-        $comments = Comment::latest()->get();
-        $current_id = Auth::id();
         $likes = Like::all();
         $commentLikes = CommentLike::all();
 
-        return view('welcome', compact('posts', 'comments', 'likes', 'commentLikes'));
+        $directory = '';
+        if ($posts->isNotEmpty()) {
+            $directory = 'public/images/' . $posts->first()->upid . '.jpg';
+        }
+
+        return view('welcome', compact('posts', 'comments', 'likes', 'commentLikes', 'directory'));
     }
 
     public function create()
@@ -58,14 +53,22 @@ class PostsController extends Controller
         ]);
 
         $picture = $request->file('image');
-        $img = Storage::putFile('public/images', $picture);
+        if ($picture != "") {
+            $img = Storage::putFile('public/images', $picture);
+        }
+
+
 
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->image = $img;
+        if ($picture != "") {
+            $post->image = $img;
+        };
         $post->user_id = auth()->id();
         $post->save();
+
+
         return redirect()->route('welcome')->with('success', 'Post created successfully.');
     }
 
